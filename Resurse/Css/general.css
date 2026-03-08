@@ -1,0 +1,45 @@
+body {
+    --culoare-fundal: #E1C8E6;
+    --margine-pagina: 120px;
+    background-color: var(--culoare-fundal);
+}
+
+p {
+    border: 1px solid var(--culoare-fundal);
+}
+
+main {
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+header img {
+    width: 255px;
+    height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        --margine-pagina: 80px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        --margine-pagina: 50px;
+    }
+}
+
+#top-produse h2 {
+    margin-bottom: 15px; /* spațiu între titlu și tabel */
+}
+
+#top-produse table {
+    margin-bottom: 15px; /* spațiu între tabel și observația de sub tabel */
+}
+
+#top-produse table th,
+#top-produse table td {
+    padding: 10px 15px; /* 10px sus-jos, 15px stânga-dreapta */
+    text-align: left;   /* optional, pentru aliniere text */
+}

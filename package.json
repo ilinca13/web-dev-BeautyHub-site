@@ -1,0 +1,41 @@
+{
+  "name": "proiect-tehnici-web",
+  "version": "1.0.0",
+  "description": "magazin makeup online",
+  "keywords": [
+    "beauty",
+    "makeup",
+    "fond",
+    "de",
+    "ten",
+    "corector",
+    "tus",
+    "paleta",
+    "de",
+    "farduri",
+    "mascara",
+    "blush",
+    "iluminator",
+    "ruj",
+    "gloss"
+  ],
+  "homepage": "https://github.com/ilinca13/web-dev-BeautyHub-site#readme",
+  "bugs": {
+    "url": "https://github.com/ilinca13/web-dev-BeautyHub-site/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilinca13/web-dev-BeautyHub-site.git"
+  },
+  "license": "ISC",
+  "author": "Ilinca Horeanga",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1"
+  }
+}

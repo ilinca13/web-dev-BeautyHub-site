@@ -5,169 +5,243 @@
     <meta charset="utf-8">
     <meta name="author" content="Horeangă Ilinca">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Beauty Hub te ajută să strălucești cu produse de makeup de la brandurile tale favorite, la un preț avantajos și livrare gratuită prin curier la comenzi cu valoare mai mare de 50 de lei.">
-    <meta name="keywords" content="makeup, Beauty Hub, fond de ten, corector, ruj, paletă de farduri, mascara, tuș lichid, creion de buze, evenimente, natural, tendințe">
+    <meta name="description"
+        content="Beauty Hub te ajută să strălucești cu produse de makeup de la brandurile tale favorite, la un preț avantajos și livrare gratuită prin curier la comenzi cu valoare mai mare de 50 de lei.">
+    <meta name="keywords"
+        content="makeup, Beauty Hub, fond de ten, corector, ruj, paletă de farduri, mascara, tuș lichid, creion de buze, evenimente, natural, tendințe">
     <title>Beauty Hub</title>
-    <link rel="icon" type="image/png" href="./Resurse/Imagini/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="./Resurse/Imagini/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="./Resurse/Imagini/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./Resurse/Imagini/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="./Resurse/Imagini/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="./Resurse/Css/general.css" type="text/css" />
+    <link rel="icon" type="image/png" href="/Resurse/Imagini/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/Resurse/Imagini/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/Resurse/Imagini/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Resurse/Imagini/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/Resurse/Imagini/favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single+Ink:wght@100..900&family=Imperial+Script&family=Jacquarda+Bastarda+9&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/Resurse/Css/general.css" type="text/css" />
+    <link rel="stylesheet" href="/Resurse/Css/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/Resurse/Css/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
+    <link rel="stylesheet" href="/Resurse/Css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
     <header>
         <h1>Beauty Hub</h1>
-        <img src="./Resurse/Imagini/sigla-fara-fundal.png" alt="sigla" />
+        <img src="/Resurse/Imagini/sigla-fara-fundal.png" alt="sigla" />
         <nav>
-            <ul>
+
+            <label id="hamburger" for="ch-menu">
+                <img src="/Resurse/Imagini/Hamburger_icon_alb.png" alt="menu">
+            </label>
+
+            <input type="checkbox" id="ch-menu" />
+
+            <ul class="meniu">
+
                 <li>
-                    Acasă
+                    <div class="text-icon" id="acasa">Acasă</div>
+
+                    <div class="imag-icon" id="acasa-mediu">
+                        <span class="fas fa-house"></span>
+                    </div>
+
                     <ul>
-                        <li>
-                            <a href="#welcome">Bine ai venit</a>
-                        </li>
-                        <li> 
-                            <a href="#promotii">Promoții</a>
-                        </li>
-                        <li> 
-                            <a href="#hot-drops">Hot Drops</a>
-                        </li>
-                        <li> 
-                            <a href="#produse">Produsele noastre</a>
-                        </li>
-                        <li> 
-                            <a href="#evenimente">Evenimente</a>
-                        </li>
-                        <li> 
-                            <a href="#despre-noi">Despre noi</a>
-                        </li> 
-                        <li> 
-                            <a href="#tutoriale-makeup">Tutoriale de Makeup</a>
-                        </li> 
+                        <li><a href="#welcome">Bine ai venit</a></li>
+                        <li><a href="#promotii">Promoții</a></li>
+                        <li><a href="#hot-drops">Hot Drops</a></li>
+                        <li><a href="#produse">Produse</a></li>
+                        <li><a href="#evenimente">Evenimente</a></li>
+                        <li><a href="#despre-noi">Despre noi</a></li>
+                        <li><a href="#tutoriale-makeup">Tutoriale </a></li>
+                        <li><a href="#subsol">Contact</a></li>
                     </ul>
                 </li>
-                <li> Produse </li>
-                <li> Branduri </li>
-                <li> Contact </li>
+
+                <li>
+                    <div class="text-icon"><a href="#"></a></div>
+                    <div class="imag-icon">
+                        <span class="fas fa-calendar-check"></span>
+                    </div>
+                </li>
+
+                <li>
+                    <div><i class="fa-solid fa-gem"></i> Branduri</div>
+                    <ul>
+                        <li><a href="#">Luxury</a></li>
+                        <li><a href="#">Profesionale</a></li>
+                        <li><a href="#">Accesibile</a></li>
+                        <li><a href="#">Vegan </a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div><i class="fa-solid fa-gifts"></i> Produse</div>
+                    <ul>
+                        <li><a href="#">Toate</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Accesorii</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#subsol"><i class="fa-regular fa-envelope"></i> Contact</a>
+                </li>
 
             </ul>
+
         </nav>
+        <header class="c1" id="titlu">
+            <h1 id="t" class="bonbon-regular">Beauty <span>Hub</span> <i class="fa-regular fa-star fa-bounce"></i>
+            </h1>
+        </header>
     </header>
 
     <main> <!--  comentariu -->
         <div id="grid-pagina">
             <!--  welcome -->
             <section id="welcome">
-                <hgroup>
-                    <h2>Bine ai venit!</h2>
-                    <p class="subtitlu"> Lasă-te inspirată de cele mai bune produse de makeup pe Beauty Hub, la un preț avantajos!</p>
-                </hgroup>
+                <div class="welcome-text">
+                    <hgroup>
+                        <h2>Bine ai venit!</h2>
+                        <p class="subtitlu"> Lasă-te inspirată de cele mai bune produse de makeup pe Beauty Hub, la un
+                            preț avantajos!</p>
+                    </hgroup>
 
-                <blockquote>
-                    <q>Machiajul este arta care exprimă personalitatea fiecăruia dintre noi.</q>
-                </blockquote>
+                    <blockquote>
+                        <q>Machiajul este arta care exprimă personalitatea fiecăruia dintre noi.</q>
+                    </blockquote>
 
-                <p class="intro"><strong>Beauty Hub</strong> este un magazin online specializat în vânzarea de produse de 
-                <b>makeup</b> și <b>cosmetice profesionale</b>. Fie că ești în căutarea unui <b>look natural</b> pentru zi sau a unei <b>aparitii strălucitoare</b> pentru un eveniment special, vei găsi la noi o gamă variată de produse de la brandurile tale favorite, precum 
-                <b><a href="https://www.maybelline.com" target="_blank">Maybelline New York</a></b>, 
-                <b><a href="https://www.loreal.com" target="_blank">L'Oreal Paris</a></b>, 
-                <b><a href="https://www.essence.eu/ro-ro" target="_blank">Essence</a></b>, 
-                <b><a href="https://www.catrice.com" target="_blank">Catrice</a></b>, 
-                <b><a href="https://www.nyxcosmetics.com/?srsltid=AfmBOopEyJo-tpEYVu6V_PwDrT0snIthqfOwRc8ui-TdBqP0PfZHdZ9p" target="_blank">NYX Professional Makeup</a></b>,  
-                <b><a href="https://www.rimmellondon.com/en-gb" target="_blank">Rimmel London</a></b>, 
-                <b><a href="https://www.maxfactor.com" target="_blank">Max Factor</a></b> și 
-                <b><a href="https://www.esteelauder.com" target="_blank">Estée Lauder</a></b>.
-                </p>
-                <p> Descoperă Beauty Hub și navighează selecția noastră de <b>fonduri de ten</b>, <b>corectoare</b>, <b>rujuri</b>, <b>palete de farduri</b>, <b>mascara</b>, <b>tușuri lichide</b> și multe altele, pentru stilul de machiaj dorit.</p>
-                
-                <div class="intro-oferte">
-                    <div class="categorie">
-                        <h3>Ten</h3>
-                        <ul>
-                            <li>Fond de ten</li>
-                            <li>Corector</li>
-                            <li>Pudră</li>
-                            <li>Blush</li>
-                            <li>Bronzer</li>
-                            <li>Iluminator</li>
-                        </ul>
+                    <p class="intro">
+                        <strong>Beauty Hub</strong> este un magazin online specializat în vânzarea de produse de
+                        <b>makeup</b> și <b>cosmetice profesionale</b>. Fie că ești în căutarea unui <b>look natural</b>
+                        pentru zi sau a unei <b>aparitii strălucitoare</b> pentru un eveniment special, vei găsi la noi
+                        o gamă variată de produse de la brandurile tale favorite, precum
+                        <b><a href="https://www.maybelline.com" target="_blank">Maybelline New York</a></b>,
+                        <b><a href="https://www.loreal.com" target="_blank">L'Oreal Paris</a></b>,
+                        <b><a href="https://www.essence.eu/ro-ro" target="_blank">Essence</a></b>,
+                        <b><a href="https://www.catrice.com" target="_blank">Catrice</a></b>,
+                        <b><a href="https://www.nyxcosmetics.com/?srsltid=AfmBOopEyJo-tpEYVu6V_PwDrT0snIthqfOwRc8ui-TdBqP0PfZHdZ9p"
+                                target="_blank">NYX Professional Makeup</a></b>,
+                        <b><a href="https://www.rimmellondon.com/en-gb" target="_blank">Rimmel London</a></b>,
+                        <b><a href="https://www.maxfactor.com" target="_blank">Max Factor</a></b> și
+                        <b><a href="https://www.esteelauder.com" target="_blank">Estée Lauder</a></b>.
+                    </p>
+                    <p> Descoperă Beauty Hub și navighează selecția noastră de <b>fonduri de ten</b>, <b>corectoare</b>,
+                        <b>rujuri</b>, <b>palete de farduri</b>, <b>mascara</b>, <b>tușuri lichide</b> și multe altele,
+                        pentru stilul de machiaj dorit.
+                    </p>
+
+                    <div class="intro-oferte">
+                        <div class="categorie">
+                            <h3>Ten</h3>
+                            <ul>
+                                <li>Fond de ten</li>
+                                <li>Corector</li>
+                                <li>Pudră</li>
+                                <li>Blush</li>
+                                <li>Bronzer</li>
+                                <li>Iluminator</li>
+                            </ul>
+                        </div>
+
+                        <div class="categorie">
+                            <h3>Ochi</h3>
+                            <ul>
+                                <li>Palete de farduri</li>
+                                <li>Mascara</li>
+                                <li>Tuș lichid</li>
+                                <li>Creion ochi</li>
+                                <li>Gene false</li>
+                            </ul>
+                        </div>
+
+                        <div class="categorie">
+                            <h3>Buze</h3>
+                            <ul>
+                                <li>Ruj lichid</li>
+                                <li>Ruj stick</li>
+                                <li>Gloss</li>
+                                <li>Creion buze</li>
+                            </ul>
+                        </div>
+
+                        <div class="categorie">
+                            <h3>Accesorii</h3>
+                            <ul>
+                                <li>Pensule</li>
+                                <li>Bureți</li>
+                                <li>Ondulator de gene</li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="categorie">
-                        <h3>Ochi</h3>
-                        <ul>
-                            <li>Palete de farduri</li>
-                            <li>Mascara</li>
-                            <li>Tuș lichid</li>
-                            <li>Creion ochi</li>
-                            <li>Gene false</li>
-                        </ul>
-                    </div>
-
-                    <div class="categorie">
-                        <h3>Buze</h3>
-                        <ul>
-                            <li>Ruj lichid</li>
-                            <li>Ruj stick</li>
-                            <li>Gloss</li>
-                            <li>Creion buze</li>
-                        </ul>
-                    </div>
-
-                    <div class="categorie">
-                        <h3>Accesorii</h3>
-                        <ul>
-                            <li>Pensule</li>
-                            <li>Bureți</li>
-                            <li>Ondulator de gene</li>
-                        </ul>
-                    </div>
+                    <p class="anunt intro"> Vă oferim <b>transport gratuit</b> pentru comenzi în valoare de mai mult de
+                        <b>50 de lei</b>, garantat de firmele noastre de livrare partenere, <b>Fan Courier</b> și
+                        <b>Cargo</b>.
+                    </p>
                 </div>
-                <p class="anunt intro"> Vă oferim <b>transport gratuit</b> pentru comenzi în valoare de mai mult de <b>50 de lei</b>, garantat de firmele noastre de livrare partenere, <b>Fan Courier</b> și <b>Cargo</b>.</p>
 
-                <div id="dv-prezentare-1">
-                    <div id="dv-prezentare">
-                    <figure id="fig-makeup">
-                        <picture>
-                            <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                <div class="welcome-media">
+                    <div id="dv-prezentare-1">
+                        <div id="dv-prezentare">
+                            <figure id="fig-makeup">
+                                <picture>
+                                    <!-- il ia pe primul care se potriveste cu query-ul din media-->
 
-                            <!-- imagine mică pentru mobil -->
-                            <source srcset="./Resurse/Imagini/makeup_before_after_200x200.jpg" media="(max-width:700px)"/>
-                            <!-- imagine medie pentru tableta -->
-                            <source srcset="./Resurse/Imagini/makeup_before_after_640x360.jpg" media="(max-width:1200px)"/>
-                            <!-- imagine mare pentru desktop -->
-                            <img src="./Resurse/Imagini/makeup_before_after.jpg" alt="Transformare machiaj înainte și după"
-                            title="Machiaj profesional Beauty Hub">
-                        </picture>
-                        <figcaption>Transformare machiaj înainte și după cu produsele Beauty Hub.</figcaption>
-                    </figure>
-                </div>
-            </div>
-            <hr class="produse"/>
-            <div id="container-video">
-                <div id="centrare-video">
-                    <div id="clip-video">
-                        <div id="stil-video">
-                            <video width="320" height="240"  playsinline autoplay loop muted>
-                                <source src="resurse/video/Chocolate.mp4" type="video/mp4">
-                                <source src="resurse/video/Chocolate.ogv" type="video/ogv">
-                                <track default src="data:image/png;base64,V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo=" kind="captions" srclang="ro" label="romana">
-                                <track src="data:image/png;base64,V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo=" kind="captions" srclang="en" label="engleza">
-                            </video>
+                                    <!-- imagine mică pentru mobil -->
+                                    <source srcset="/Resurse/Imagini/makeup_before_after_200x200.jpg"
+                                        media="(max-width:700px)" />
+                                    <!-- imagine medie pentru tableta -->
+                                    <source srcset="/Resurse/Imagini/makeup_before_after_640x360.jpg"
+                                        media="(max-width:1200px)" />
+                                    <!-- imagine mare pentru desktop -->
+                                    <img src="/Resurse/Imagini/makeup_before_after.jpg"
+                                        alt="Transformare machiaj înainte și după"
+                                        title="Machiaj profesional Beauty Hub">
+                                </picture>
+                                <figcaption>Transformare machiaj înainte și după cu produsele Beauty Hub.</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <hr class="produse" />
+                    <div id="container-video">
+                        <div id="centrare-video">
+                            <div id="clip-video">
+                                <div id="stil-video">
+                                    <video width="320" height="240" playsinline autoplay loop muted>
+                                        <source src="resurse/video/Chocolate.mp4" type="video/mp4">
+                                        <source src="resurse/video/Chocolate.ogv" type="video/ogv">
+                                        <track default
+                                            src="data:image/png;base64,V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo="
+                                            kind="captions" srclang="ro" label="romana">
+                                        <track
+                                            src="data:image/png;base64,V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo="
+                                            kind="captions" srclang="en" label="engleza">
+                                    </video>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </section>
             <section id="promotii">
                 <h2>Promoții și oferte</h2>
                 <article>
                     <h3 class="titlu">Super ofertă de weekend!</h3>
-                    <p><b>Beauty Hub</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate produsele cumpărate în intervalul <b>10:00</b> - <b>14:00</b>.</p>
-                    <p>Oferta este valabilă doar în zilele de sâmbătă și duminică pe site-ul <abbr title="Beauty Hub">BH</abbr>.</p>
-                    <p>În cazul în care cumpărați mai mult de <b>4 produse</b> din oricare categorie primiți si un <b>card de fidelitate</b> pentru Salvare!</p>
+                    <p><b>Beauty Hub</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate produsele
+                        cumpărate în intervalul <b>10:00</b> - <b>14:00</b>.</p>
+                    <p>Oferta este valabilă doar în zilele de sâmbătă și duminică pe site-ul <abbr
+                            title="Beauty Hub">BH</abbr>.</p>
+                    <p>În cazul în care cumpărați mai mult de <b>4 produse</b> din oricare categorie primiți si un
+                        <b>card de fidelitate</b> pentru Salvare!
+                    </p>
                 </article>
                 <article>
                     <h3>Ofertă pachet</h3>
@@ -180,59 +254,66 @@
                         <li><b>Gratis</b>: un <i>set</i> de produse de <i>îngrijire a pielii</i></li>
                         <li><b>Gratis</b>: o <i>mască de dormit</i></li>
                     </ol>
-                    
+
                 </article>
 
                 <article>
                     <h3>Calculul discount-ului</h3>
-                        <p>Formula pentru a calcula prețul final cu reducere:</p>
-                        <math xmlns="http://www.w3.org/1998/Math/MathML">
-                            <mrow>
-                                <mi>Preț_final</mi>
-                                <mo>=</mo>
-                                <mi>Preț</mi>
-                                <mo>&#x2212;</mo>
-                                <mi>Preț</mi>
-                                <mo>&#xD7;</mo>
-                                <mfrac>
-                                    <mn>Discount</mn>
-                                    <mn>100</mn>
-                                </mfrac>
-                            </mrow>
-                        </math>
+                    <p>Formula pentru a calcula prețul final cu reducere:</p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mrow>
+                            <mi class="final">Preț_final</mi>
+                            <mo>=</mo>
+                            <mi class="pret">Preț</mi>
+                            <mo>&#x2212;</mo>
+                            <mi class="pret">Preț</mi>
+                            <mo>&#xD7;</mo>
+                            <mfrac>
+                                <mn class="discount">Discount</mn>
+                                <mn class="suta">100</mn>
+                            </mfrac>
+                        </mrow>
+                    </math>
                 </article>
 
                 <article>
                     <h3>Machiaje tematice</h3>
                     <p>Noi punem suflet în evenimentele speciale din viața ta!</p>
-                    <p>Pentru orice petrecere la care ești invitată, te putem face să te remarci printr-un look original! Dacă ești interesată doar să îți exerserzi abilitățile de machiaj, suntem aici pentru tine să îți susținem creativitatea.</p>
+                    <p>Pentru orice petrecere la care ești invitată, te putem face să te remarci printr-un look
+                        original! Dacă ești interesată doar să îți exerserzi abilitățile de machiaj, suntem aici pentru
+                        tine să îți susținem creativitatea.</p>
                     <ol>
-                        <li><b>Machiaje de Halloween</b>: fioros sau excentric, fii pregătită să te transformi cu adevărat.</li>
-                        <li><b>Machiaje pentru o seară în club</b>: elegante și sofisticate, pentru a te face să strălucești la orice petrecere.</li>
-                        <li><b>Machiaje pentru evenimente elegante în familie</b>: clasic și romantic, pentru a te face să strălucești la orice ceremonie.</li>
-                        <li><b>Machiaje de Revelion</b>: speciale pentru a te face să fii un star la orice eveniment de anul nou.</li>
+                        <li><b>Machiaje de Halloween</b>: fioros sau excentric, fii pregătită să te transformi cu
+                            adevărat.</li>
+                        <li><b>Machiaje pentru o seară în club</b>: elegante și sofisticate, pentru a te face să
+                            strălucești la orice petrecere.</li>
+                        <li><b>Machiaje pentru evenimente elegante în familie</b>: clasic și romantic, pentru a te face
+                            să strălucești la orice ceremonie.</li>
+                        <li><b>Machiaje de Revelion</b>: speciale pentru a te face să fii un star la orice eveniment de
+                            anul nou.</li>
 
                     </ol>
-                    
+
                 </article>
-                
+
             </section>
 
             <section id="produse">
                 <h2>Produsele noastre</h2>
-                <p>Beauty Hub îți oferă o gamă variată de cosmetice profesionale pentru orice stil de machiaj și tip de ten.</p>
-                
+                <p>Beauty Hub îți oferă o gamă variată de cosmetice profesionale pentru orice stil de machiaj și tip de
+                    ten.</p>
+
                 <section>
 
                     <h3>Produse pentru Ten</h3>
 
                     <ul>
-                    <li>fond de ten</li>
-                    <li>corector</li>
-                    <li>pudră</li>
-                    <li>bronzer</li>
-                    <li>blush</li>
-                    <li>iluminator</li>
+                        <li>fond de ten</li>
+                        <li>corector</li>
+                        <li>pudră</li>
+                        <li>bronzer</li>
+                        <li>blush</li>
+                        <li>iluminator</li>
                     </ul>
 
                 </section>
@@ -243,10 +324,10 @@
                     <h3>Produse pentru Ochi</h3>
 
                     <ul>
-                    <li>mascara</li>
-                    <li>palete farduri</li>
-                    <li>tuș lichid</li>
-                    <li>creion ochi</li>
+                        <li>mascara</li>
+                        <li>palete farduri</li>
+                        <li>tuș lichid</li>
+                        <li>creion ochi</li>
                     </ul>
 
                 </section>
@@ -257,10 +338,10 @@
                     <h3>Produse pentru Buze</h3>
 
                     <ul>
-                    <li>ruj lichid</li>
-                    <li>ruj stick</li>
-                    <li>gloss</li>
-                    <li>creion buze</li>
+                        <li>ruj lichid</li>
+                        <li>ruj stick</li>
+                        <li>gloss</li>
+                        <li>creion buze</li>
                     </ul>
 
                 </section>
@@ -270,9 +351,13 @@
             <section id="evenimente">
                 <h2>Evenimente Beauty Hub</h2>
                 <ul>
-                    <li><time datetime="2026-04-12T18:00">12 aprilie 2026 ora 18:00</time>, <b>Workshop Machiaj Natural</b> – demonstrație de machiaj.</li>
-                    <li><time datetime="2026-05-10T17:00">10 mai 2026 ora 17:00</time>, <b>Lansare colecție nouă NYX Professional Makeup </b> – prezentarea și testarea produselor la <b>Palatul Parlamentului</b>.</li>
-                    <li><time datetime="2026-06-05T16:00">5 iunie 2026 ora 16:00</time>, <b>Beauty Day</b> – reduceri exclusive la makeup din colecțiile cele mai noi.</li>
+                    <li><time datetime="2026-04-12T18:00">12 aprilie 2026 ora 18:00</time>, <b>Workshop Machiaj
+                            Natural</b> – demonstrație de machiaj.</li>
+                    <li><time datetime="2026-05-10T17:00">10 mai 2026 ora 17:00</time>, <b>Lansare colecție nouă NYX
+                            Professional Makeup </b> – prezentarea și testarea produselor la <b>Palatul
+                            Parlamentului</b>.</li>
+                    <li><time datetime="2026-06-05T16:00">5 iunie 2026 ora 16:00</time>, <b>Beauty Day</b> – reduceri
+                        exclusive la makeup din colecțiile cele mai noi.</li>
                 </ul>
             </section>
 
@@ -280,167 +365,197 @@
                 <h2>Despre noi</h2>
 
                 <p>
-                    La <b>Beauty Hub</b> credem că machiajul este mai mult decât un produs – este o formă de 
-                    exprimare personală. Industria cosmeticelor are o istorie bogată, care a evoluat de-a lungul secolelor. De la utilizarea de pigmenți naturali în Egiptul Antic, la dezvoltarea fondurilor de ten și a rujurilor în epoca victoriană, până la inovațiile tehnologice din zilele noastre, cosmeticele au fost mereu un mijloc de a evidenția frumusețea și de a exprima individualitatea. 
-                   
+                    La <b>Beauty Hub</b> credem că machiajul este mai mult decât un produs – este o formă de
+                    exprimare personală. Industria cosmeticelor are o istorie bogată, care a evoluat de-a lungul
+                    secolelor. De la utilizarea de pigmenți naturali în Egiptul Antic, la dezvoltarea fondurilor de ten
+                    și a rujurilor în epoca victoriană, până la inovațiile tehnologice din zilele noastre, cosmeticele
+                    au fost mereu un mijloc de a evidenția frumusețea și de a exprima individualitatea.
+
                 </p>
 
                 <p>
                     Poți citi mai multe despre evoluția produselor cosmetice aici:
                     <a href="https://en.wikipedia.org/wiki/Cosmetics#History">
-                    https://en.wikipedia.org/<wbr>wiki/<wbr>Cosmetics<wbr>#History
+                        https://en.wikipedia.org/<wbr>wiki/<wbr>Cosmetics<wbr>#History
                     </a>
                 </p>
 
                 <p>
-                    La <b>Beauty Hub</b>, ne mândrim cu faptul că oferim produse de înaltă calitate, de la branduri de renume, la prețuri accesibile. Echipa noastră este formată din pasionați de frumusețe care sunt mereu la curent cu cele mai noi tendințe și inovații din industria cosmeticelor. Ne străduim să oferim o experiență de cumpărături plăcută și să ajutăm fiecare clientă să găsească produsele potrivite pentru nevoile și preferințele sale.
+                    La <b>Beauty Hub</b>, ne mândrim cu faptul că oferim produse de înaltă calitate, de la branduri de
+                    renume, la prețuri accesibile. Echipa noastră este formată din pasionați de frumusețe care sunt
+                    mereu la curent cu cele mai noi tendințe și inovații din industria cosmeticelor. Ne străduim să
+                    oferim o experiență de cumpărături plăcută și să ajutăm fiecare clientă să găsească produsele
+                    potrivite pentru nevoile și preferințele sale.
                 </p>
 
             </section>
 
             <section id="hot-drops">
-    <h2>Top Produse Beauty Hub</h2>
-    <table id="tab-produse">
-        <caption>Cele mai vândute produse în ultima lună</caption>
-        <thead>
-            <tr>
-                <th>Cod</th>
-                <th>Produs</th>
-                <th>Brand</th>
-                <th>Categorie</th>
-                <th>Preț (lei)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>BH001</td>
-                <td>Fond de ten Fit Me</td>
-                <td rowspan="2">Maybelline New York</td>
-                <td>Ten</td>
-                <td>55</td>
-            </tr>
-            <tr>
-                <td>BH002</td>
-                <td>Corector Instant Age</td>
-                <td>Ten</td>
-                <td>48</td>
-            </tr>
-            <tr>
-                <td>BH003</td>
-                <td>Ruj lichid Soft Matte</td>
-                <td rowspan="2">NYX Professional Makeup</td>
-                <td>Buze</td>
-                <td>35</td>
-            </tr>
-            <tr>
-                <td>BH004</td>
-                <td>Gloss Butter</td>
-                <td>Buze</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td>BH005</td>
-                <td>Mascara Lash Sensational</td>
-                <td>L'Oreal Paris</td>
-                <td>Ochi</td>
-                <td>60</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5">Toate produsele sunt disponibile în limita stocului. Prețurile sunt valabile online.</td>
-            </tr>
-        </tfoot>
-    </table>
-</section>
-            
-            <section id="index-intrebari">
-                <h2>Întrebări frecvente</h2>
-                <details><summary>Produsele dumneavoastră provoacă alergii?</summary>
-                    <p>Toate produsele noastre sunt testate dermatologic și sunt sigure pentru majoritatea tipurilor de piele. Dacă aveți sensibilități speciale, verificați lista de ingrediente aferentă fiecărui produs.</p>
-                </details>
-                <details><summary>Pot returna un produs dacă nu sunt mulțumită?</summary>
-                    <p>Da, puteți returna produsul în 14 zile de la livrare, cu ambalajul intact și bonul fiscal. Pentru mai multe detalii, consultați politica de returnare.</p>
-                </details>
-                <details><summary>Beauty Hub livrează în afara României?</summary>
-                    <p>În prezent, livrăm doar în România. Planificăm extinderea în alte țări din Eurpa de Est în viitor.</p>
-                </details>
-                <details><summary>Aveți și un magazin fizic?</summary>
-                    <p>În prezent, nu avem un magazin fizic, dar lucrăm la extinderea în această direcție.</p>
-                </details>
-                <details><summary>Aveți produse care sunt testate pe animale?</summary>
-                    <p>În prezent, încercăm să evităm produse care promovează testarea pe animale și ne concentrăm pe metode alternative de testare.</p>
-                </details>
+                <h2>Top Produse Beauty Hub</h2>
+                <div class="container-tabel">
+                    <table id="tab-produse">
+                        <caption>Cele mai vândute produse în ultima lună</caption>
+                        <thead>
+                            <tr>
+                                <th>Cod</th>
+                                <th>Produs</th>
+                                <th>Brand</th>
+                                <th>Categorie</th>
+                                <th>Preț (lei)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BH001</td>
+                                <td>Fond de ten Fit Me</td>
+                                <td rowspan="2">Maybelline New York</td>
+                                <td>Ten</td>
+                                <td>55</td>
+                            </tr>
+                            <tr>
+                                <td>BH002</td>
+                                <td>Corector Instant Age</td>
+                                <td>Ten</td>
+                                <td>48</td>
+                            </tr>
+                            <tr>
+                                <td>BH003</td>
+                                <td>Ruj lichid Soft Matte</td>
+                                <td rowspan="2">NYX Professional Makeup</td>
+                                <td>Buze</td>
+                                <td>35</td>
+                            </tr>
+                            <tr>
+                                <td>BH004</td>
+                                <td>Gloss Butter</td>
+                                <td>Buze</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>BH005</td>
+                                <td>Mascara Lash Sensational</td>
+                                <td>L'Oreal Paris</td>
+                                <td>Ochi</td>
+                                <td>60</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">Toate produsele sunt disponibile în limita stocului. Prețurile sunt
+                                    valabile
+                                    online.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </section>
 
-        </div>
-
-        <section id="statistici">
-            <h2>Statistici Beauty Hub</h2>
+            <section id="index-intrebari">
+                <h2>Întrebări frecvente</h2>
+                <details>
+                    <summary>Produsele dumneavoastră provoacă alergii?</summary>
+                    <p>Toate produsele noastre sunt testate dermatologic și sunt sigure pentru majoritatea tipurilor de
+                        piele. Dacă aveți sensibilități speciale, verificați lista de ingrediente aferentă fiecărui
+                        produs.</p>
+                </details>
+                <details>
+                    <summary>Pot returna un produs dacă nu sunt mulțumită?</summary>
+                    <p>Da, puteți returna produsul în 14 zile de la livrare, cu ambalajul intact și bonul fiscal. Pentru
+                        mai multe detalii, consultați politica de returnare.</p>
+                </details>
+                <details>
+                    <summary>Beauty Hub livrează în afara României?</summary>
+                    <p>În prezent, livrăm doar în România. Planificăm extinderea în alte țări din Eurpa de Est în
+                        viitor.</p>
+                </details>
+                <details>
+                    <summary>Aveți și un magazin fizic?</summary>
+                    <p>În prezent, nu avem un magazin fizic, dar lucrăm la extinderea în această direcție.</p>
+                </details>
+                <details>
+                    <summary>Aveți produse care sunt testate pe animale?</summary>
+                    <p>În prezent, încercăm să evităm produse care promovează testarea pe animale și ne concentrăm pe
+                        metode alternative de testare.</p>
+                </details>
+            </section>
+            <section id="statistici">
+                <h2>Statistici Beauty Hub</h2>
 
                 <p>Participanți confirmați la workshop-ul de machiaj:</p>
                 <meter value="12" min="0" max="30" low="10" high="25" optimum="20"> 12 din 30 participanți
                 </meter>
 
                 <p>Popularitate ruj lichid (în funcție de vânzări):</p>
-                <meter value="90" min="0" max="100" low="30" high="70" optimum="50">   90% popularitate
+                <meter value="90" min="0" max="100" low="30" high="70" optimum="50"> 90% popularitate
                 </meter>
-        </section>
+            </section>
+
+        </div>
+
+
         <section id="galerie-statica">
             <h2>Galerie</h2>
             <div id="grid-galerie">
                 <figure>
                     <div>
-                        <a href="./Resurse/Imagini/ethereal-sculpted-beauty-look.jpg">
-                        <img src="./Resurse/Imagini/ethereal-sculpted-beauty-look_200x200.jpg" alt="makeup_pastel">
-                </a>
-                </div>
-                <figcaption>Makeup Pastel</figcaption>
+                        <a href="/Resurse/Imagini/ethereal-sculpted-beauty-look.jpg">
+                            <img src="/Resurse/Imagini/ethereal-sculpted-beauty-look_200x200.jpg" alt="makeup_pastel">
+                        </a>
+                    </div>
+                    <figcaption>Makeup Pastel</figcaption>
                 </figure>
-            
+
             </div>
-            <a href="./Resurse/Imagini/ethereal-sculpted-beauty-look.jpg" download="poza_descarcata.png"> Descarcă poza 
+            <a href="/Resurse/Imagini/ethereal-sculpted-beauty-look.jpg" download="poza_descarcata.png"> Descarcă poza
             </a>
         </section>
         <section id="tutoriale-makeup">
             <h2>Tutoriale de Makeup</h2>
-            <p>Urmăriți tutorialele noastre de makeup pentru a învăța cum să vă aplicați într-un mod cât mai interesant produsele, în spiritul tendințelor actuale. Sperăm să vă placă sugestiile noastre!</p>
+            <p>Urmăriți tutorialele noastre de makeup pentru a învăța cum să vă aplicați într-un mod cât mai interesant
+                produsele, în spiritul tendințelor actuale. Sperăm să vă placă sugestiile noastre!</p>
             <div class="container-iframe">
                 <div class="taburi-iframe">
-                <a href="https://www.youtube.com/embed/Ci6yRXyKwFQ?si=9puk7z5nyl-D7_sv" target="ifr-video">Clean Natural Look</a>
-                <a href="https://www.youtube.com/embed/AHWN9PUiXTQ?si=kyR7tCUt6OBFAt-9" target="ifr-video" >Movie Star Glam Look</a>
-                <a href="https://www.youtube.com/embed/M1PPCk5rSOk?si=zImEpVC5Lsc8tKPL" >Filter Beginner Friendly Look</a><br/>
+                    <a href="https://www.youtube.com/embed/Ci6yRXyKwFQ?si=9puk7z5nyl-D7_sv" target="ifr-video">Clean
+                        Natural Look</a>
+                    <a href="https://www.youtube.com/embed/AHWN9PUiXTQ?si=kyR7tCUt6OBFAt-9" target="ifr-video">Movie
+                        Star Glam Look</a>
+                    <a href="https://www.youtube.com/embed/M1PPCk5rSOk?si=zImEpVC5Lsc8tKPL">Filter Beginner Friendly
+                        Look</a><br />
                 </div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/M1PPCk5rSOk?si=zImEpVC5Lsc8tKPL" name="ifr-video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/M1PPCk5rSOk?si=zImEpVC5Lsc8tKPL"
+                    name="ifr-video" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
             <h3>Ghid machiaj profesional pentru începători</h3>
-            <embed src="./Resurse/Imagini/Essence_of_Makeup.pdf" type="application/pdf" width="600" height="400">
+            <embed src="/Resurse/Imagini/Essence_of_Makeup.pdf" type="application/pdf" width="600" height="400">
         </section>
 
 
 
     </main>
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer>
         <address>
             Telefon: <a href="tel:+40749607086">+40 749 607 086</a><br>
-            Adresă: <a href="https://maps.app.goo.gl/1NCDAp3DUGyK2ovE6" target="_blank">Str. Exemplu 1, București</a><br>
+            Adresă: <a href="https://maps.app.goo.gl/1NCDAp3DUGyK2ovE6" target="_blank">Str. Exemplu 1,
+                București</a><br>
             Email: <a href="mailto:contact@beautyhub.ro">contact@beautyhub.ro</a><br>
             WhatsApp: <a href="https://wa.me/40749607086">Chat cu echipa noastră</a>
         </address>
 
-        <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.884114398508!2d26.09701177666127!3d44.43553930148104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1772988854421!5m2!1sro!2sro" 
-        width="300" 
-        height="200" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy">
-    </iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.884114398508!2d26.09701177666127!3d44.43553930148104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1772988854421!5m2!1sro!2sro"
+            width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
         <p><small>&copy; <time datetime="2026-03-08">8 martie 2026</time> Beauty Hub</small></p>
-        <p><a href="#top">Înapoi la meniul de start</a></p>
+        <p><a href="#top" class="scroll-top" title="Revino la începutul paginii">
+                <span class="arrow">&#8593;</span>
+            </a>
+        </p>
     </footer>
 </body>
+
 </html>

@@ -1,27 +1,123 @@
-#hamburger{
+/* reset si repozitionare */
+#hamburger {
     display: block;
+    cursor: pointer;
+    width: fit-content;
 }
 
-#hamburger> img{
-    height: 3em;
+#hamburger > img {
+    height: 2em; 
     width: auto;
 }
 
-ul.meniu{
+#ch-menu {
     display: none;
 }
 
-#ch-menu:checked+ul.meniu{
-    display: block;
+nav {
+    position: relative;
+    background-color: var(--bordercolor);
+    min-height: 3em;
+}
+
+/* meniu principal */
+ul.meniu {
+    all: unset; 
+    display: block !important;
+    flex-direction: column !important;
     position: absolute;
-    z-index: 10;
+    top: 100%;
+    left: 0;
     width: 100%;
+    z-index: 1000;
+    background-color: var(--culoare-fundal);
+
+    clip-path: circle(0% at 0% 0%);
+    transition: clip-path 0.6s ease-in-out;
+    pointer-events: none;
 }
 
-ul.meniu li{
-    width: 100%;
+#ch-menu:checked + ul.meniu {
+    clip-path: circle(150% at 0% 0%);
+    pointer-events: auto;
 }
 
-ul.meniu ul{
+/* elemente din meniu */
+ul.meniu > li {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+    line-height: normal !important;
+    border: none;
+    border-bottom: 1px solid var(--bordercolor);
+    background-color: var(--bordercolor);
+    position: relative;
+}
+
+ul.meniu > li > a {
+    display: block;
+    padding: 15px 20px;
     width: 100%;
+    box-sizing: border-box;
+    text-align: center; 
+}
+
+
+/* submeniu */
+ul.meniu ul {
+    
+    position: static !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    display: none !important; 
+    
+    width: 100% !important;
+    background-color: rgba(0,0,0,0.03);
+}
+
+ul.meniu i {
+        display: none !important;
+    }
+
+/* afisare submeniu la hover pe parinte */
+ul.meniu > li:hover > ul {
+    display: block !important;
+}
+
+ul.meniu ul li {
+    width: 100% !important;
+    height: auto !important;
+    border: none;
+    padding-left: 30px; /* indentare sub-itemi */
+    background-color: var(--bordercolor);
+}
+
+ul.meniu > li:first-child a i {
+        display: inline-block !important; 
+        font-size: 1.3rem;
+    }
+    ul.meniu > li:first-child a .text-icon {
+        display: none !important; 
+    }
+
+
+ul.meniu i {
+    display: none !important; /* toate icon urile ascunse implicit */
+}
+
+ul.meniu > li:first-child a i {
+    display: inline-block !important; 
+}
+
+ul.meniu > li:first-child a .text-icon {
+    display: none !important; 
+}
+
+ul.meniu > li:not(:first-child) a .text-icon {
+    display: inline-block !important; 
+}
+
+
+ul.meniu > li::after {
+    display: none !important;
 }

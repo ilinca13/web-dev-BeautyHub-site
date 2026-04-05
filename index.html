@@ -23,9 +23,9 @@
 
 
     <link rel="stylesheet" href="/Resurse/Css/general.css" type="text/css" />
-    <link rel="stylesheet" href="/Resurse/Css/nav.css" type="text/css" />
-    <link rel="stylesheet" href="/Resurse/Css/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
-    <link rel="stylesheet" href="/Resurse/Css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
+    <link rel="stylesheet" href="/Resurse/Css/navbar.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/Resurse/Css/nav700.css" type="text/css" media="screen and (max-width: 700px)" /> -->
+    <!-- <link rel="stylesheet" href="/Resurse/Css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -45,11 +45,10 @@
             <ul class="meniu">
 
                 <li>
-                    <div class="text-icon" id="acasa">Acasă</div>
-
-                    <div class="imag-icon" id="acasa-mediu">
-                        <span class="fas fa-house"></span>
-                    </div>
+                    <a href="#">
+                        <i class="fas fa-house"></i>
+                        <span class="text-icon"> Acasă</span> 
+                    </a>
 
                     <ul>
                         <li><a href="#welcome">Bine ai venit</a></li>
@@ -64,14 +63,17 @@
                 </li>
 
                 <li>
-                    <div class="text-icon"><a href="#"></a></div>
-                    <div class="imag-icon">
-                        <span class="fas fa-calendar-check"></span>
-                    </div>
+                     <a href="#">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="text-icon"> Sign in</span> 
+                    </a>
                 </li>
 
                 <li>
-                    <div><i class="fa-solid fa-gem"></i> Branduri</div>
+                    <a href="#">
+                         <i class="fa-solid fa-gem"></i>
+                        <span class="text-icon"> Branduri</span> 
+                    </a>
                     <ul>
                         <li><a href="#">Luxury</a></li>
                         <li><a href="#">Profesionale</a></li>
@@ -81,7 +83,10 @@
                 </li>
 
                 <li>
-                    <div><i class="fa-solid fa-gifts"></i> Produse</div>
+                    <a href="#">
+                        <i class="fa-solid fa-gifts"></i>
+                        <span class="text-icon"> Produse</span>
+                    </a>
                     <ul>
                         <li><a href="#">Toate</a></li>
                         <li><a href="#">Makeup</a></li>
@@ -91,16 +96,26 @@
                 </li>
 
                 <li>
-                    <a href="#subsol"><i class="fa-regular fa-envelope"></i> Contact</a>
+                    <a href="#">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="text-icon"> Coșul meu</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#subsol">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="text-icon"> Contact</span>
+                    </a>
                 </li>
 
             </ul>
 
         </nav>
-        <header class="c1" id="titlu">
+        <div class="c1" id="titlu">
             <h1 id="t" class="bonbon-regular">Beauty <span>Hub</span> <i class="fa-regular fa-star fa-bounce"></i>
             </h1>
-        </header>
+        </div>
     </header>
 
     <main> <!--  comentariu -->
@@ -194,7 +209,7 @@
                                 <picture>
                                     <!-- il ia pe primul care se potriveste cu query-ul din media-->
 
-                                    <!-- imagine mică pentru mobil -->
+                                    <!-- imagine mica pentru mobil -->
                                     <source srcset="/Resurse/Imagini/makeup_before_after_200x200.jpg"
                                         media="(max-width:700px)" />
                                     <!-- imagine medie pentru tableta -->
@@ -216,8 +231,8 @@
                             <div id="clip-video">
                                 <div id="stil-video">
                                     <video width="320" height="240" playsinline autoplay loop muted>
-                                        <source src="resurse/video/Chocolate.mp4" type="video/mp4">
-                                        <source src="resurse/video/Chocolate.ogv" type="video/ogv">
+                                        <source src="/Resurse/video/Chocolate.mp4" type="video/mp4">
+                                        <source src="/Resurse/video/Chocolate.ogv" type="video/ogv">
                                         <track default
                                             src="data:image/png;base64,V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo="
                                             kind="captions" srclang="ro" label="romana">
@@ -555,6 +570,7 @@
                 <span class="arrow">&#8593;</span>
             </a>
         </p>
+        <p class="banner-proiect">Acesta este un proiect școlar!</p>
     </footer>
 </body>
 

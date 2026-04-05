@@ -1,104 +1,86 @@
 <header>
         <h1>Beauty Hub</h1>
-        <img src="./Resurse/Imagini/sigla-fara-fundal.png" alt="sigla" />
-        <!--<nav>
-            <ul class = "meniu">
+        <img src="/Resurse/Imagini/sigla-fara-fundal.png" alt="sigla" />
+        <nav>
+
+            <label id="hamburger" for="ch-menu">
+                <img src="/Resurse/Imagini/Hamburger_icon_alb.png" alt="menu">
+            </label>
+
+            <input type="checkbox" id="ch-menu" />
+
+            <ul class="meniu">
+
                 <li>
-                    Acasă
+                    <a href="#">
+                        <i class="fas fa-house"></i>
+                        <span class="text-icon"> Acasă</span> 
+                    </a>
+
                     <ul>
-                        <li>
-                            <a href="#welcome">Bine ai venit</a>
-                        </li>
-                        <li> 
-                            <a href="#promotii">Promoții</a>
-                        </li>
-                        <li> 
-                            <a href="#hot-drops">Hot Drops</a>
-                        </li>
-                        <li> 
-                            <a href="#produse">Produsele noastre</a>
-                        </li>
-                        <li> 
-                            <a href="#evenimente">Evenimente</a>
-                        </li>
-                        <li> 
-                            <a href="#despre-noi">Despre noi</a>
-                        </li> 
-                        <li> 
-                            <a href="#tutoriale-makeup">Tutoriale de Makeup</a>
-                        </li> 
+                        <li><a href="#welcome">Bine ai venit</a></li>
+                        <li><a href="#promotii">Promoții</a></li>
+                        <li><a href="#hot-drops">Hot Drops</a></li>
+                        <li><a href="#produse">Produse</a></li>
+                        <li><a href="#evenimente">Evenimente</a></li>
+                        <li><a href="#despre-noi">Despre noi</a></li>
+                        <li><a href="#tutoriale-makeup">Tutoriale </a></li>
+                        <li><a href="#subsol">Contact</a></li>
                     </ul>
                 </li>
-                <li> Produse </li>
-                <li> Branduri </li>
-                <li> Contact </li>
+
+                <li>
+                     <a href="#">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="text-icon"> Sign in</span> 
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                         <i class="fa-solid fa-gem"></i>
+                        <span class="text-icon"> Branduri</span> 
+                    </a>
+                    <ul>
+                        <li><a href="#">Luxury</a></li>
+                        <li><a href="#">Profesionale</a></li>
+                        <li><a href="#">Accesibile</a></li>
+                        <li><a href="#">Vegan </a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-gifts"></i>
+                        <span class="text-icon"> Produse</span>
+                    </a>
+                    <ul>
+                        <li><a href="#">Toate</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Accesorii</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="text-icon"> Coșul meu</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#subsol">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="text-icon"> Contact</span>
+                    </a>
+                </li>
 
             </ul>
-        </nav> -->
-        <nav>
-        
-    <label id="hamburger" for="ch-menu">
-        <img src="./Resurse/Imagini/Hamburger_icon_alb.png" alt="menu">    
-    </label>
 
-    <input type="checkbox" id="ch-menu"/>
-
-    <ul class="meniu">
-
-        <li>
-            <div class="text-icon" id="acasa">Acasă</div>
-
-            <div class="imag-icon" id="acasa-mediu">
-                <span class="fas fa-house"></span>
-            </div>
-
-            <ul>
-                <li><a href="#welcome">Bine ai venit</a></li>
-                <li><a href="#promotii">Promoții</a></li>
-                <li><a href="#hot-drops">Hot Drops</a></li>
-                <li><a href="#produse">Produse</a></li>
-                <li><a href="#evenimente">Evenimente</a></li>
-                <li><a href="#despre-noi">Despre noi</a></li>
-                <li><a href="#tutoriale-makeup">Tutoriale </a></li>
-                <li><a href="#subsol">Contact</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <div class="text-icon"><a href="#">Programări</a></div>
-            <div class="imag-icon">
-                <span class="fas fa-calendar-check"></span>
-            </div>
-        </li>
-
-        <li>
-            <div>Branduri</div>
-            <ul>
-                <li><a href="#">Luxury</a></li>
-                <li><a href="#">Profesionale</a></li>
-                <li><a href="#">Accesibile</a></li>
-                <li><a href="#">Vegan </a></li>
-            </ul>
-        </li>
-
-        <li>
-            <div>Produse</div>
-            <ul>
-                <li><a href="#">Toate</a></li>
-                <li><a href="#">Makeup</a></li>
-                <li><a href="#">Skincare</a></li>
-                <li><a href="#">Accesorii</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#subsol"><i class="fa-regular fa-envelope"></i> Contact</a>
-        </li>
-
-    </ul>
-
-</nav>
-<header class="c1" id="titlu" >
-        <h1 id="t" class="bonbon-regular">Beauty <span>Hub</span> <i class="fa-solid fa-cake-candles fa-bounce"></i></h1>
-    </header>
+        </nav>
+        <div class="c1" id="titlu">
+            <h1 id="t" class="bonbon-regular">Beauty <span>Hub</span> <i class="fa-regular fa-star fa-bounce"></i>
+            </h1>
+        </div>
     </header>

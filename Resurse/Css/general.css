@@ -546,8 +546,124 @@ math mo {
         display: block;
     }
 
-    * {
+    /** {
+        transition: none !important;
+        animation: none !important;
+    }*/
+    *:not(nav):not(nav *) {
         transition: none !important;
         animation: none !important;
     }
+}
+
+@media print {
+    /* reset */
+    #grid-pagina {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    /* copiii directi ai gridului care aveau grid-area */
+    #grid-pagina > * {
+        display: block !important;
+        width: 100% !important;
+        position: static !important;
+        margin-bottom: 20px !important;
+        page-break-inside: avoid; 
+        break-inside: avoid;
+        float: none !important;
+    }
+
+    /* reset elementele interne care erau grid  */
+    #welcome {
+        display: block !important;
+        padding-left: 0 !important;
+        padding-top: 10px !important;
+    }
+
+    main {
+        margin: 0 !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* evitare sectionare */
+    article, section, p, li, tr, .categorie {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* elemente ascunse */
+    img, video, iframe, canvas, meter, audio, 
+    figure, figcaption, embed, object,
+    .welcome-media, .container-video, .container-iframe, 
+    .taburi-iframe, #tutoriale-makeup h3,
+    nav, #hamburger, #ch-menu, .scroll-top, 
+    .back-to-top, .arrow, footer a[href="#top"] {
+        display: none !important;
+    }
+
+    /* link uri */
+    a {
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+    header > h1:not(#t), /* ascunde orice h1 care nu are id="t" */
+    header > img,         
+    nav, 
+    #hamburger, 
+    #ch-menu {
+        display: none !important;
+    }
+
+    /* 5. banner prima pagina */
+    .banner-proiect {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        text-align: center;
+        border: 2px dotted black !important;
+        padding: 10px;
+    }
+
+    /* titlu h1 prima pagina */
+    header h1#t {
+        display: block !important;
+        margin-top: 30vh !important;
+        text-align: center;
+        font-size: 2.5rem !important;
+        text-decoration: underline !important;
+        page-break-after: always !important;
+    }
+    
+    header h1 i { display: none !important; }
+
+    /* watermark */
+    body::after {
+        content: "Horeangă Ilinca";
+        position: fixed;
+        bottom: 1cm;
+        right: 1cm;
+        width: 100px;
+        height: 2cm;
+        border: 3px double black !important;
+        opacity: 0.65;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 10pt;
+        z-index: 9999;
+    }
+
+    /* margini */
+    @page { margin: 1cm; }
+    @page :left { margin-left: 2.5cm; margin-right: 0.5cm; }
+    @page :right { margin-left: 0.5cm; margin-right: 2.5cm; }
+
+    /* page break footer */
+    footer { page-break-before: always !important; }
 }

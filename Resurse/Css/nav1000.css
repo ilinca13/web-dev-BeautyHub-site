@@ -1,3 +1,16 @@
-.text-icon{
-    display: none;
+@media (max-width: 1000px) {
+
+    .text-icon {
+        display: none;
+    }
+
+    ul.meniu ul li a {
+    font-size: 0.85rem;
+    }
+
+    ul.meniu > li {
+        width: 60px; 
+        min-width: 60px;
+    }
+
 }

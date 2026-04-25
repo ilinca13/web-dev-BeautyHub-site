@@ -1,0 +1,16 @@
+WEBVTT
+
+STYLE
+::cue {
+  background-color: #F0F9FF; /* c1 deschis */
+  color: #003366;           /* c2 închis */
+}
+
+00:00:02.000 --> 00:00:07.000
+Bine ai venit la <u>Beauty Hub</u>!
+
+00:00:15.000 --> 00:00:20.000 line:10% align:right
+Descoperă produsele noastre de top pentru a avea un look în tendințe!
+
+00:00:35.000 --> 00:00:42.000
+Te așteptăm să vizitezi ce am ales pentru tine!

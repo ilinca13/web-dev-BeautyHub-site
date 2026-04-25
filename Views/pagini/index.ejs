@@ -22,6 +22,7 @@
                 <div class="welcome-text">
                     <hgroup>
                         <h2>Bine ai venit!</h2>
+                        <p><button class="btn btn-primary">Buton Bootstrap</button></p>
                         <p class="subtitlu"> Lasă-te inspirată de cele mai bune produse de makeup pe Beauty Hub, la un
                             preț avantajos!</p>
                         <p> IP: <%- locals.ip %></p>
@@ -126,23 +127,22 @@
                     <hr class="produse" />
                     <div id="container-video">
                         <div id="centrare-video">
-                            <div id="clip-video">
-                                <div id="stil-video">
-                                    <video width="320" height="240" playsinline autoplay loop muted>
-                                        <source src="/Resurse/video/Chocolate.mp4" type="video/mp4">
-                                        <source src="/Resurse/video/Chocolate.ogv" type="video/ogv">
-                                        <track default
-                                            src="data:image/png;base64,V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo="
-                                            kind="captions" srclang="ro" label="romana">
-                                        <track
-                                            src="data:image/png;base64,V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo="
-                                            kind="captions" srclang="en" label="engleza">
-                                    </video>
-                                </div>
-                            </div>
+                        <h3 class="text-center">Descoperă Universul Beauty Hub</h3> 
+        
+                        <div id="clip-video">
+                            <video controls poster="/Resurse/Imagini/video_poster.jpg" preload="metadata" playsinline>
+                                <source src="/Resurse/Video/filmulet.mp4" type="video/mp4">
+                                <source src="/Resurse/Video/filmulet.webm" type="video/webm">
+                
+                                <track label="Română" kind="subtitles" srclang="ro" src="/Resurse/Video/subtitrari_ro.vtt" default>
+                             <track label="English" kind="subtitles" srclang="en" src="/Resurse/Video/subtitrari_en.vtt">
+                
+                                Browserul tău nu suportă redarea video HTML5.
+                            </video>
                         </div>
+                     </div>
                     </div>
-                </div>
+            </div>
             </section>
             <section id="promotii">
                 <h2>Promoții și oferte</h2>
@@ -288,10 +288,11 @@
 
                 <p>
                     Poți citi mai multe despre evoluția produselor cosmetice aici:
-                    <a href="https://en.wikipedia.org/wiki/Cosmetics#History">
-                        https://en.wikipedia.org/<wbr>wiki/<wbr>Cosmetics<wbr>#History
-                    </a>
+                    
                 </p>
+                <p> <a href="https://en.wikipedia.org/wiki/Cosmetics#History">
+                        https://en.wikipedia.org/<wbr>wiki/<wbr>Cosmetics<wbr>#History
+                    </a> </p>
 
                 <p>
                     La <b>Beauty Hub</b>, ne mândrim cu faptul că oferim produse de înaltă calitate, de la branduri de
@@ -405,10 +406,24 @@
 
         </div>
 
-
         <section id="galerie-statica">
             <h2>Galerie</h2>
             <div id="grid-galerie">
+                <%
+                vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"]
+                 for (let imag of locals.imagini) { 
+                    lunaCurenta= vectLuni[(new Date()).getMonth()]
+                    if(imag.luni?.includes(lunaCurenta)) {
+                        %>
+                        <figure>
+                            <picture>
+                            <source srcset="<%- imag.fisier_mediu %>" media = "screen and (max-width :1100px)">
+                            <img src="<%- imag.fisier %>" alt="briose">
+                            <figcaption><%- imag.descriere %></figcaption>
+                            </picture>
+                        </figure>
+                    <% } %>
+                <% } %>
                 <figure>
                     <div>
                         <a href="/Resurse/Imagini/ethereal-sculpted-beauty-look.jpg">

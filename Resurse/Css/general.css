@@ -7,6 +7,7 @@ body {
     --culoare-chenar-citat: #f1dff1;
     --culoare-casete: #f7e4e9;
     --culoare-grid: #f7edf4;
+    --culoare-link: #9fecff;
 
     font-family: "Bitcount Prop Single Ink", system-ui;
     font-weight: 400;
@@ -55,11 +56,72 @@ h3 {
         0 1px currentColor, 0 -1px currentColor;
 }
 
+/* LINK uri */
 
+
+a:visited {
+    color: var(--culoare-accent-inchis);
+}
+
+
+a[href^="http"]::before {
+    content: "⮳";
+    display: inline-block;
+    font-size: 1.5em; 
+    margin-right: 0.3em;
+    vertical-align: middle;
+    line-height: 1;
+    transition: color 0.4s linear;
+}
+
+
+a[href^="http"]:hover::before {
+    color: var(--culoare-highlight);
+}
+
+
+main a {
+    position: relative;
+    text-decoration: underline;
+    color: black; 
+    background-image: radial-gradient(
+        circle, 
+        var(--culoare-link) 0%, 
+        var(--culoare-link) 40%, 
+        transparent 80%, 
+        transparent 100%
+    );
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0 0; 
+    transition: background-size 0.6s ease-out; 
+}
+main a[href^="http"] {
+    background-position: calc(50% + 0.5em) 50%; 
+    white-space: nowrap;
+}
+
+main a[href^="http"]::before {
+    content: "⮳";
+    white-space: nowrap;
+    margin-right: 0.3em; 
+}
+
+
+main a:hover {
+    background-size: 100% 100%;
+}
+
+
+a:active {
+    outline: 2px solid var(--bordercolor); 
+    border: 1px solid black;
+}
 
 #grid-pagina {
     display: grid;
-    gap: 10px;
+    gap: 10px; /* spatiere intre celule*/
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
         "welcome welcome welcome"
@@ -70,25 +132,25 @@ h3 {
 }
 
 
-#grid-pagina>* {
+#grid-pagina>* { /*copiii directi ai gridului*/
     border: 1px solid var(--bordercolor);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); 
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 10px; /* colturi rotunjite */
     background: var(--culoare-grid);
 }
 
 
 figure {
-    margin: 0;
+    margin: 0; /*fara spatierea implicita a browserului*/
 }
 
 figure img {
-    width: 100%;
+    width: 100%; /*imagine responsive*/
     height: auto;
 }
 
-
+/*text responsive*/
 
 @media screen and (max-width: 1200px) {
     html {
@@ -103,7 +165,7 @@ figure img {
 }
 
 
-#welcome {
+#welcome { 
     grid-area: welcome;
 }
 
@@ -139,16 +201,16 @@ figure img {
 /* F-pattern */
 
 
-#welcome {
+#welcome { 
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.15fr 0.85fr; /* coloana text mai lata decat media */
     gap: 0px;
     align-items: start;
     padding-top: 30px;
     padding-left: 60px;
     margin-bottom: 20px;
     font-size: 1rem;
-    transition: font-size 0.3s ease-in-out;
+    transition: font-size 0.3s ease-in-out; /*tranzitie la redimensionare text*/
 }
 
 
@@ -317,6 +379,56 @@ figure img {
     color: white;
 }*/
 
+
+/* VIDEO */
+
+.welcome-media img, 
+.welcome-media video {
+    width: 100%;           
+    max-width: 600px;       
+    height: auto;           
+    display: block;         
+    margin: 0 auto 15px auto; 
+}
+
+#container-video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#clip-video {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#clip-video video {
+    width: 100%;            
+    max-width: 600px;       
+    min-width: 250px;
+    height: auto;
+    border: 2px solid var(--bordercolor); 
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#clip-video video:hover {
+    transform: scale(1.02); 
+}
+
+
+video::cue {
+    background-color: var(--culoare-grid); 
+    color: var(--culoare-accent-inchis);   
+}
+
+
+/*TABEL*/
+
 /* container scroll */
 .container-tabel {
     overflow-x: auto;
@@ -324,10 +436,9 @@ figure img {
 
 /* tabel */
 #tab-produse {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: collapse; /* linii comune pentru th si td */
+    width: 100%; 
     min-width: 600px;
-    /* pentru scroll pe ecrane mici */
 }
 
 
@@ -345,7 +456,8 @@ figure img {
     text-align: center;
 }
 
-/* coloane - vertical borders alternate */
+/* coloane - vertical borders alternate
+    linii - horizontal borders alternante */
 #tab-produse th:nth-child(odd),
 #tab-produse td:nth-child(odd) {
     border-left: 2px solid #7CACE6;
@@ -382,13 +494,13 @@ figure img {
 }
 
 #tab-produse tbody tr:hover {
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4); /*umbra la interior*/
 }
 
 
 @media screen and (max-width: 700px) {
     .container-tabel {
-        overflow-x: auto;
+        overflow-x: auto; /*continutul care da pe afara pe axa x*/
     }
 
     #tab-produse {
@@ -396,12 +508,18 @@ figure img {
     }
 }
 
+
+
+
+/*taburi iframe*/
+
+
 .container-iframe {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; /*reverse: tab urile in dreapta + row: langa iframe*/
 
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: flex-end; /*axa verticala*/
+    justify-content: flex-end; /*axa orizontala*/
 
     width: 100%;
     max-width: 700px;
@@ -412,7 +530,7 @@ figure img {
 
 .taburi-iframe {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /*se afiseaza unele sub altele pe verticala*/
 
     justify-content: flex-start;
 }
@@ -440,6 +558,11 @@ figure img {
     color: white;
 }
 
+
+
+
+
+/*stilizare math ml*/
 
 math mi.final {
     font-weight: bold;
@@ -475,7 +598,11 @@ math mo {
 }
 
 
-/* container buton */
+
+
+
+
+/* buton scroll top */
 
 .scroll-top {
     position: fixed;
@@ -486,12 +613,12 @@ math mo {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, #6a1b9a, #9c27b0, #6a1b9a);
+    background: linear-gradient(180deg, #6a1b9a, #9c27b0, #6a1b9a); /*gradient de sus in jos*/
     border: 2px dashed #ffffff;
-    border-radius: 50%;
+    border-radius: 50%; /*in toate partile*/
     opacity: 0.7;
     text-decoration: none;
-    z-index: 1000;
+    z-index: 1000; /*rlrmrntul este mai in fata*/
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
@@ -516,6 +643,11 @@ math mo {
     transform: rotate(-30deg);
     /* sageata ramane dreapta */
 }
+
+
+
+
+
 
 @media screen and (max-width:1200px) {
     body {
@@ -543,18 +675,32 @@ math mo {
     }
 
     #grid-pagina {
-        display: block;
+        display: block; /*se ignora coloanele*/
     }
 
     /** {
         transition: none !important;
         animation: none !important;
     }*/
-    *:not(nav):not(nav *) {
+    *:not(nav):not(nav *) { /*excludem nav si tot ce e in nav pentru a pastra meniul functional*/
         transition: none !important;
         animation: none !important;
     }
 }
+
+#clip-video video {
+    width: 100% !important;
+    max-width: 600px !important; 
+    min-width: 250px !important;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
 
 @media print {
     /* reset */

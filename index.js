@@ -2,6 +2,9 @@ const express= require("express");
 const path= require("path");
 const fs= require("fs");
 const sass= require("sass");
+const sharp= require("sharp");
+
+const pg= require("pg");
 
 app= express();
 app.set("view engine", "ejs")
@@ -18,6 +21,25 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
+client=new pg.Client({
+    database:"proiect_tw",
+    user:"beauty_hub_admin",
+    password:"beauty_hub",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+
+client.query("select * from prajituri where id>3", function (err, rez){
+   if (err) {
+        console.log("Eroare query", err)
+   }
+    else{
+        console.log(rez)
+    }
+})
+
 let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
 for (let folder of vect_foldere){
     let caleFolder=path.join(__dirname, folder);
@@ -29,7 +51,8 @@ for (let folder of vect_foldere){
 app.get(["/", "/index", "/home"], function(req, res){
     //res.sendFile(path.join(__dirname, "index.html"));
     res.render("pagini/index", {
-        ip: req.ip
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini
     });
 });
 
@@ -70,7 +93,30 @@ app.get("/eroare", function(req, res){
     afisareEroare(res, 404, "Titlu!!!")
 });
 
+function initImagini(){
+    var continut= fs.readFileSync(path.join(__dirname,"Resurse/Json/galerie.json")).toString("utf-8");
 
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+    let caleGalerie=obGlobal.obImagini.cale_galerie
+
+    let caleAbs=path.join(__dirname,caleGalerie);
+    let caleAbsMediu=path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+    
+    for (let imag of vImagini){
+        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
+        let caleFisAbs=path.join(caleAbs,imag.fisier);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+        imag.fisier=path.join("/", caleGalerie, imag.fisier )
+        
+    }
+    // console.log(obGlobal.obImagini)
+}
+initImagini();
 
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
@@ -132,6 +178,7 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 //});
 
 app.use("/Resurse", express.static(path.join(__dirname, "Resurse")));
+app.use("/dist", express.static(path.join(__dirname, "/node_modules/bootstrap/dist")));
 
 app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname,"Resurse/Imagini/favicon/favicon.ico"))

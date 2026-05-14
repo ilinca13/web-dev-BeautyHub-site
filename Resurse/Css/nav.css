@@ -4,7 +4,7 @@ nav {
   --latime-buton: 115px;
   --inaltime-buton: 30px;
   background-color: var(--bordercolor);
-  position: relative;
+  position: relative; /*ancora pentru meniul mobil*/
 }
 
 #hamburger, #ch-menu {
@@ -15,13 +15,14 @@ ul.meniu {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex;
+  display: flex; /*butoane aliniate implicit pe orizontala*/
   position: relative;
+  /*elementele meniului principal*/
 }
 ul.meniu a {
   text-decoration: none !important;
   color: black !important;
-  display: block;
+  display: block; /*sa se poata da click pe toata zona din li*/
   width: 100%;
   height: 100%;
   font-size: 1rem;
@@ -29,7 +30,7 @@ ul.meniu a {
 ul.meniu a i {
   color: black !important;
 }
-ul.meniu > li {
+ul.meniu > li { /*doar copiii directi, fara submeniu*/
   display: inline-block;
   width: var(--latime-buton);
   height: var(--inaltime-buton);
@@ -38,17 +39,17 @@ ul.meniu > li {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   line-height: var(--inaltime-buton);
-  position: relative;
-  z-index: 1;
+  position: relative; /* ancora pentru bara de gradent ::after*/
+  z-index: 1; /* elementul vine peste fundal*/
   transition: all 0.3s linear;
 }
 ul.meniu > li:hover {
   background-color: var(--bordercolor);
-  filter: brightness(1.1);
+  filter: brightness(1.1); /*cu 10% mai luminos*/
 }
 ul.meniu > li:hover::after {
-  transform: translateY(calc(var(--inaltime-buton) - 4px));
-  opacity: 1;
+  transform: translateY(calc(var(--inaltime-buton) - 4px)); /*bara coboara in jos cu buton - 4px*/
+  opacity: 1; /*bara devine vizibila*/
 }
 ul.meniu > li::after {
   content: "";
@@ -59,23 +60,26 @@ ul.meniu > li::after {
   height: 4px;
   background: linear-gradient(to right, black, white, black);
   opacity: 0;
-  transform: translateY(-100%);
-  transition: all 0.5s ease;
-  pointer-events: none;
-  z-index: 0;
+  transform: translateY(-100%); /*bara incepe deasupra butonului*/
+  transition: all 0.5s ease; /*animatie pentru bara*/
+  pointer-events: none; /*se ignora bara la hover*/
+  z-index: 0; /*sta cu un strat in spate*/
+}
+ul.meniu {
+  /* elementele submeniurilor*/
 }
 ul.meniu ul {
   position: absolute;
-  top: 100%;
+  top: 100%; /* submeniul apare imediat sub butonul parinte*/
   left: 0;
-  z-index: 10;
+  z-index: 10; /*sta deasupra elementelor din pagina*/
   list-style: none;
   padding: 0;
   margin: 0;
-  transform: scale(0);
-  transform-origin: center;
-  opacity: 0;
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: scale(0); /* submeniul incepe invizibil scalat la 0*/
+  transform-origin: center; /* punctul de origine pentru scalare, aici centrul submeniului */
+  opacity: 0; /* submeniul incepe complet transparent */
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* animatie pentru aparitia submeniului */
 }
 ul.meniu ul li {
   background-color: var(--culoare-fundal);
@@ -87,10 +91,12 @@ ul.meniu ul li:hover {
   background-color: var(--bordercolor);
   filter: brightness(1.25);
 }
-ul.meniu ul li::after {
-  display: none !important;
+ul.meniu ul li {
+  /*&::after {
+    display: none !important; 
+  }*/
 }
-ul.meniu li:hover > ul {
+ul.meniu li:hover > ul { /* submeniul vizibil scalat la dimensiunea normala */
   transform: scale(1);
   opacity: 1;
 }

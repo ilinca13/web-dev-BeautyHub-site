@@ -1,7 +1,55 @@
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
-(
-    $primary: red,
-    $secondary:purple,
-    $link-color: #0d6efd
-    
-)
+
+@import "../../node_modules/bootstrap/scss/functions";
+
+
+$primary: #8E7BE5;   
+$secondary: #7CACE6; 
+$success: #C5A3E6;   
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 850px,
+  lg: 1150px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+$border-radius: 12px;
+$border-radius-lg: 25px;
+$font-family-base: "Bitcount Prop Single Ink", system-ui, sans-serif;
+
+
+$h1-font-size: 3.5rem;
+$h2-font-size: 2.8rem;
+
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+$custom-theme-colors: (
+  "tema-fundal": #E1C8E6,
+  "tema-grid": #f7edf4
+);
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+h1, h2, h3 {
+    font-weight: normal; 
+    text-shadow: 1px 0 currentColor, -1px 0 currentColor, 0 1px currentColor, 0 -1px currentColor;
+}
+
+main a {
+    text-decoration: underline;
+    color: black;
+    &:hover {
+        color: initial; 
+    }
+}

@@ -33,7 +33,7 @@ client.connect()
 
 client.query("select * from prajituri where id>3", function (err, rez){
    if (err) {
-        console.log("Eroare query", err)
+       console.log("Eroare query", err)
    }
     else{
         console.log(rez)
@@ -52,12 +52,58 @@ app.get(["/", "/index", "/home"], function(req, res){
     //res.sendFile(path.join(__dirname, "index.html"));
     res.render("pagini/index", {
         ip: req.ip,
-        imagini: obGlobal.obImagini.imagini
+        imagini: obGlobal.obImagini
     });
 });
 
-app.get("/despre", function(req, res){
-    res.render("pagini/despre");
+app.get("/galerie", function(req, res){
+    res.render("pagini/galerie", {
+        imagini: obGlobal.obImagini 
+    });
+});
+
+// app.get("/despre", function(req, res){
+    // res.render("pagini/despre");
+// });
+
+app.get("/produse", function(req, res){
+    let clauzaWhere="";
+    if(req.query.tip){
+        clauzaWhere=` where tip_produs='${req.query.tip}'`
+    }
+   client.query(`select * from prajituri ${clauzaWhere}`, function (err, rez){
+   if (err) {
+       console.log("Eroare", err)
+       afisareEroare(res, 2)
+   }
+    else{
+        res.render("pagini/produse", {
+            produse: rez.rows,
+        optiuni: []
+    })
+    }
+})
+});
+
+app.get("/produs/:id", function(req, res){
+    
+   client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez){
+   if (err) {
+       console.log("Eroare", err)
+       afisareEroare(res, 2)
+   }
+    else{
+        if (rez.rowCount==0){
+            afisareEroare(res, 404, "Produs inexistent")}
+        else
+        {
+             res.render("pagini/produs", {
+            prod: rez.rows[0]
+    })
+        }
+       
+    }
+})
 });
 
 function initErori(){
@@ -93,58 +139,137 @@ app.get("/eroare", function(req, res){
     afisareEroare(res, 404, "Titlu!!!")
 });
 
-function initImagini(){
-    var continut= fs.readFileSync(path.join(__dirname,"Resurse/Json/galerie.json")).toString("utf-8");
+// function initImagini(){
+//     var continut= fs.readFileSync(path.join(__dirname,"Resurse/Json/galerie.json")).toString("utf-8");
 
-    obGlobal.obImagini=JSON.parse(continut);
-    let vImagini=obGlobal.obImagini.imagini;
-    let caleGalerie=obGlobal.obImagini.cale_galerie
+//     obGlobal.obImagini=JSON.parse(continut);
+//     let vImagini=obGlobal.obImagini.imagini;
+//     let caleGalerie=obGlobal.obImagini.cale_galerie
 
-    let caleAbs=path.join(__dirname,caleGalerie);
-    let caleAbsMediu=path.join(caleAbs, "mediu");
-    if (!fs.existsSync(caleAbsMediu))
-        fs.mkdirSync(caleAbsMediu);
+//     let caleAbs=path.join(__dirname,caleGalerie);
+//     let caleAbsMediu=path.join(caleAbs, "mediu");
+//     if (!fs.existsSync(caleAbsMediu))
+//         fs.mkdirSync(caleAbsMediu);
     
-    for (let imag of vImagini){
-        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
-        let caleFisAbs=path.join(caleAbs,imag.fisier);
-        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
-        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
-        imag.fisier=path.join("/", caleGalerie, imag.fisier )
+//     for (let imag of vImagini){
+//         [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
+//         let caleFisAbs=path.join(caleAbs,imag.fisier);
+//         let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+//         sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+//         imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+//         imag.fisier=path.join("/", caleGalerie, imag.fisier )
         
-    }
-    // console.log(obGlobal.obImagini)
+//     }
+//     // console.log(obGlobal.obImagini)
+// }
+
+function initImagini() {
+    var continut = fs.readFileSync(path.join(__dirname, "Resurse/Json/galerie.json")).toString("utf-8");
+    var obJSON = JSON.parse(continut);
+    let vImagini = obJSON.imagini;
+    let caleGalerie = obJSON.cale_galerie;
+
+    const luniAn = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+    const lunaCurenta = luniAn[new Date().getMonth()]; 
+
+    let imaginiFiltrate = vImagini
+        .filter(img => img.luni.includes(lunaCurenta))
+        .slice(0, 12);
+
+    let caleAbs = path.join(__dirname, caleGalerie);
+    let caleAbsMic = path.join(caleAbs, "mic");
+    let caleAbsMediu = path.join(caleAbs, "mediu");
+    
+    if (!fs.existsSync(caleAbsMic)) fs.mkdirSync(caleAbsMic, { recursive: true });
+    if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu, { recursive: true });
+
+    
+    imaginiFiltrate.forEach(img => {
+        let numeFis = path.parse(img.fisier).name; // scoate extensia
+        let caleFisSursa = path.join(caleAbs, img.fisier);
+        
+        
+        sharp(caleFisSursa).resize(200).toFile(path.join(caleAbsMic, numeFis + ".webp"));
+        sharp(caleFisSursa).resize(400).toFile(path.join(caleAbsMediu, numeFis + ".webp"));
+
+        
+        img.cale_fisier = path.join("/", caleGalerie, img.fisier);
+        img.cale_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
+        img.cale_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp");
+    });
+
+    
+    obGlobal.obImagini = imaginiFiltrate;
 }
+
 initImagini();
 
-function compileazaScss(caleScss, caleCss){
-    if(!caleCss){
+// function compileazaScss(caleScss, caleCss){
+//     if(!caleCss){
 
-        let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
-        let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
-        caleCss=numeFis+".css"; // output: a.css
+//         let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
+//         let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
+//         caleCss=numeFis+".css"; // output: a.css
+//     }
+    
+//     if (!path.isAbsolute(caleScss))
+//         caleScss=path.join(obGlobal.folderScss,caleScss )
+//     if (!path.isAbsolute(caleCss))
+//         caleCss=path.join(obGlobal.folderCss,caleCss )
+    
+//     let caleBackup=path.join(obGlobal.folderBackup, "Resurse/Css");
+//     if (!fs.existsSync(caleBackup)) {
+//         fs.mkdirSync(caleBackup,{recursive:true})
+//     }
+    
+//     // la acest punct avem cai absolute in caleScss si  caleCss
+
+//     let numeFisCss=path.basename(caleCss);
+//     if (fs.existsSync(caleCss)){
+//         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "Resurse/Css",numeFisCss ))// +(new Date()).getTime()
+//     }
+//     rez=sass.compile(caleScss, {"sourceMap":true});
+//     fs.writeFileSync(caleCss,rez.css)
+    
+// }
+
+function compileazaScss(caleScss, caleCss) {
+    
+    if (!caleCss) {
+        let numeFisExt = path.basename(caleScss);
+        let numeFis = numeFisExt.split(".")[0];
+        caleCss = numeFis + ".css";
     }
+
     
-    if (!path.isAbsolute(caleScss))
-        caleScss=path.join(obGlobal.folderScss,caleScss )
-    if (!path.isAbsolute(caleCss))
-        caleCss=path.join(obGlobal.folderCss,caleCss )
+    if (!path.isAbsolute(caleScss)) caleScss = path.join(obGlobal.folderScss, caleScss);
+    if (!path.isAbsolute(caleCss)) caleCss = path.join(obGlobal.folderCss, caleCss);
+
     
-    let caleBackup=path.join(obGlobal.folderBackup, "Resurse/Css");
+    let caleBackup = path.join(obGlobal.folderBackup, "Resurse/Css");
     if (!fs.existsSync(caleBackup)) {
-        fs.mkdirSync(caleBackup,{recursive:true})
+        fs.mkdirSync(caleBackup, { recursive: true });
     }
-    
-    // la acest punct avem cai absolute in caleScss si  caleCss
 
-    let numeFisCss=path.basename(caleCss);
-    if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "Resurse/Css",numeFisCss ))// +(new Date()).getTime()
-    }
-    rez=sass.compile(caleScss, {"sourceMap":true});
-    fs.writeFileSync(caleCss,rez.css)
+    let numeFisCss = path.basename(caleCss);
+    let caleDestinatieBackup = path.join(caleBackup, numeFisCss);
+
     
+    if (fs.existsSync(caleCss)) {
+        try {
+            fs.copyFileSync(caleCss, caleDestinatieBackup);
+        } catch (e) {
+            console.error(`[EROARE BACKUP] Nu s-a putut copia ${numeFisCss}:`, e);
+        }
+    }
+
+    try {
+        const rez = sass.compile(caleScss, { "sourceMap": true });
+        fs.writeFileSync(caleCss, rez.css);
+        console.log(`[SCSS] Compilat: ${path.basename(caleScss)} -> ${numeFisCss}`);
+    } catch (err) {
+        console.error(`[EROARE COMPILARE] SASS eroare la ${caleScss}:`, err);
+    }
 }
 
 
@@ -157,14 +282,26 @@ for( let numeFis of vFisiere ){
 }
 
 
-fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
-    if (eveniment=="change" || eveniment=="rename"){
-        let caleCompleta=path.join(obGlobal.folderScss, numeFis);
-        if (fs.existsSync(caleCompleta)){
-            compileazaScss(caleCompleta);
+// fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+//     if (eveniment=="change" || eveniment=="rename"){
+//         let caleCompleta=path.join(obGlobal.folderScss, numeFis);
+//         if (fs.existsSync(caleCompleta)){
+//             compileazaScss(caleCompleta);
+//         }
+//     }
+// })
+
+fs.watch(obGlobal.folderScss, function(eveniment, numeFis) {
+    if (eveniment == "change" || eveniment == "rename") {
+        let caleCompletaScss = path.join(obGlobal.folderScss, numeFis);
+        
+        if (fs.existsSync(caleCompletaScss) && path.extname(numeFis) == ".scss") {
+            let numeFisCss = numeFis.replace(".scss", ".css");
+            
+            compileazaScss(numeFis, numeFisCss);
         }
     }
-})
+});
 
 
 
@@ -235,6 +372,9 @@ app.get("/*pagina", function(req, res){
         }
     }
 });
+
+// console.log("--- testare cale relativa ---");
+// compileazaScss("galerie.scss", "test_relativ.css");
 
 app.listen(8080);
 console.log("Serverul a pornit!");

@@ -2,40 +2,148 @@
 	"cale_galerie":"Resurse/Imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
+			"fisier": "poza13.png",
+			"titlu": "Nostalgia Hit",
+			"alt": "Produse populare în anii 2000.",
+			"text_descriere": "Machiaje și produse cosmetice populare în anii 2000, aducând un aer de nostalgie și amintiri frumoase.",
+			"luni": ["mai", "august", "septembrie"],
+			"autor": "Bairavi Arjunan3",
+			"sursa": "https://upload.wikimedia.org/wikipedia/commons/0/08/Makeup_cosmetics.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+			"licenta": "CC BY-SA 4.0",
+			"link_licenta": "https://creativecommons.org/licenses/by-sa/4.0/"
+    	},
+		{
+			"fisier": "poza1.png",
+			"titlu": "Colecția de primăvară",
+			"alt": "Cosmetice naturale",
+			"text_descriere": "Machiaje potrivite pentru un look effortless.",
+			"luni": ["martie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
-			
+			"fisier": "poza2.png",
+			"titlu": "Accesorii",
+			"alt": "Accesorii pentru față",
+			"text_descriere": "Accesorii elegante pentru a completa look-ul tău.",
+			"luni": ["decembrie", "ianuarie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
+			"fisier": "poza3.png",
+			"titlu": "Rimel Maybelline Lash Sensational",
+			"alt": "Rimel pentru ochi",
+			"text_descriere": "Rimel cu efect de volumizare senzațională.",
+			"luni": ["februarie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
+			"fisier": "poza4.png",
+			"titlu": "Colecția de toamnă",
+			"alt": "Cosmetice pentru un look elegant",
+			"text_descriere": "Cosmetice pentru un look elegant și impunător.",
+			"luni": ["septembrie", "octombrie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
-			
-			"luni":["noiembrie","aprilie", "decembrie","octombrie"]
+			"fisier": "poza5.png",
+			"titlu": "Colecția young",
+			"alt": "Cosmetice pentru un look fresh",
+			"text_descriere": "Machiaje potrivite tinerelor pasionate de make-up.",
+			"luni": ["noiembrie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"fisier": "poza7.png",
+			"titlu": "Gama de lux",
+			"alt": "Cosmetice de lux",
+			"text_descriere": "Machiaje de lux pentru un look elegant.",
+			"luni": ["iulie", "august", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
 		},
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
-		}
+			"fisier": "poza6.png",
+			"titlu": "Palete de farduri",
+			"alt": "Palente vibrante de farduri",
+			"text_descriere": "Palete de farduri cu o gamă largă de culori.",
+			"luni": ["ianuarie", "septembrie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		},
+		{
+			"fisier": "poza8.png",
+			"titlu": "Trending make-up",
+			"alt": "Cosmetice în tendințe",
+			"text_descriere": "Machiaje populare în acest an.",
+			"luni": ["martie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		},
+		{
+			"fisier": "poza9.png",
+			"titlu": "Dior Backstage",
+			"alt": "Dior Backstage Lipglow",
+			"text_descriere": "Ruj hidratant cu efect de culoare naturală, potrivit pentru toate nuanțele pielii.",
+			"luni": ["decembrie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		},
+		{
+			"fisier": "poza10.png",
+			"titlu": "Cele mai apreciate produse",
+			"alt": "Cele mai apreciate produse cosmetice",
+			"text_descriere": "Machiaje populare și apreciate de consumatori.",
+			"luni": ["august", "octombrie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		},
+		{
+			"fisier": "poza11.png",
+			"titlu": "Yves Saint Laurent Rouge Pur Couture",
+			"alt": "Ruj de tip couture",
+			"text_descriere": "Ruj de tip couture cu efect de culoare intensă și durabilă.",
+			"luni": ["noiembrie", "martie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		},
+		{
+			"fisier": "poza12.png",
+			"titlu": "Make-up vegan",
+			"alt": "Cosmetice vegane",
+			"text_descriere": "Machiaje realizate din ingrediente vegane.",
+			"luni": ["martie", "aprilie", "mai"],
+			"autor": "",
+			"sursa": "",
+			"licenta": "CC0",
+			"link_licenta": ""
+		}	
+		
 	]
 }

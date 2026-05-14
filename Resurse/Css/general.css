@@ -8,6 +8,7 @@ body {
     --culoare-casete: #f7e4e9;
     --culoare-grid: #f7edf4;
     --culoare-link: #9fecff;
+    --culoare-hr: #ab81ee;
 
     font-family: "Bitcount Prop Single Ink", system-ui;
     font-weight: 400;
@@ -150,6 +151,15 @@ figure img {
     height: auto;
 }
 
+
+
+.spatiere-verticala {
+    height: 30px; 
+    width: 100%;
+    display: block;
+}
+
+
 /*text responsive*/
 
 @media screen and (max-width: 1200px) {
@@ -222,14 +232,12 @@ figure img {
 
 .welcome-text h2 {
     font-size: 2rem;
-    /*margin-bottom: 10px;*/
     width: 100%;
     padding-left: 20px;
 }
 
 .welcome-text .subtitlu {
     font-size: 1.2rem;
-    /*margin-bottom: 15px;*/
     max-width: 90%;
     font-weight: 400;
     padding-left: 20px;
@@ -247,7 +255,6 @@ figure img {
 
 .welcome-text p {
     line-height: 1.6;
-    /*margin-bottom: 15px;*/
     max-width: 55%;
     padding-left: 50px;
 }
@@ -308,7 +315,7 @@ figure img {
     .welcome-text,
     .welcome-media {
         order: unset;
-        /* text + media pe verticală */
+        /* text + media pe verticala */
     }
 
     .intro-oferte {
@@ -645,7 +652,13 @@ math mo {
 }
 
 
-
+#footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--culoare-casete);
+    border-top: 6px solid var(--culoare-chenar-citat);
+}
 
 
 
@@ -693,6 +706,152 @@ math mo {
     max-width: 600px !important; 
     min-width: 250px !important;
     box-sizing: border-box;
+}
+
+
+
+
+
+/* DUOTONE*/
+
+.duotone-container {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+    
+    background-image: url('/Resurse/Imagini/duo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+.duotone-container::before,
+.duotone-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    z-index: 1;
+}
+
+/* C1 - albastru */
+.duotone-container::before {
+    
+    background-color: rgba(0, 255, 255, 0.6); 
+    mix-blend-mode: color; 
+    left: 0;
+    transform: translateX(-100%); 
+}
+
+/* C2 - fucsia  */
+.duotone-container::after {
+    
+    background-color: rgba(255, 0, 255, 0.6); 
+    mix-blend-mode: color;
+    left: 0;
+    transform: translateX(100%); 
+}
+
+/* hover */
+.duotone-container:hover::before,
+.duotone-container:hover::after {
+    transform: translateX(0); 
+}
+
+
+
+
+
+/* TAG HR*/
+
+hr.special-separator {
+    border: none;
+    height: 2px;
+    background-color: var(--culoare-hr); 
+    
+    
+    margin: 40px 50px; 
+    position: relative;
+    overflow: visible; 
+    opacity: 1 !important;
+}
+
+
+hr.special-separator::before,
+hr.special-separator::after {
+    content: "\273B"; 
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    color: var(--culoare-accent); 
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+hr.special-separator::before {
+    left: -35px; 
+}
+
+
+hr.special-separator::after {
+    right: -35px; 
+}
+
+
+
+
+
+
+/* TEXT OGLINDIT*/
+
+.reflexie-container {
+    display: flex;
+    justify-content: left;
+    margin: 90px 40px;
+    margin-top: -20px;
+    overflow: visible;
+}
+
+.text-reflectat {
+    position: relative;
+    display: inline-block;
+    color: var(--culoare-accent-inchis); 
+    transition: color 0.4s ease;
+    white-space: nowrap; 
+    cursor: pointer;
+    transform: rotate(-15deg);
+    transform-origin: right center;
+
+}
+
+.text-reflectat::after {
+    content: attr(data-text); 
+    position: absolute;
+    left: 100%;
+    top: 100px; 
+    
+    opacity: 1;
+    padding-left: 30px; 
+    transform: scaleX(-1) rotate(-31deg);
+    transform-origin: left right;
+    
+    color: inherit;
+    transition: inherit;
+}
+
+
+
+.reflexie-container:hover .text-reflectat {
+    color: var(--culoare-accent); 
 }
 
 

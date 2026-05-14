@@ -1,0 +1,18 @@
+<div id="grid-galerie">
+    <% for (let img of imagini) { %>
+        <figure title="<%= img.text_descriere %>">
+            <picture>
+                <source srcset="<%= img.cale_mic %>" media="(max-width: 600px)">
+                <source srcset="<%= img.cale_mediu %>" media="(max-width: 1000px)">
+                <img src="<%= img.cale_fisier %>" alt="<%= img.alt %>">
+            </picture>
+            <figcaption>
+                <span class="index-grecesc"></span> 
+                <strong><%= img.titlu %></strong>
+                <% if(img.autor) { %>
+                    <br><small>Sursă: <a href="<%= img.sursa %>"><%= img.autor %></a> (<%= img.licenta %>)</small>
+                <% } %>
+            </figcaption>
+        </figure>
+    <% } %>
+</div>

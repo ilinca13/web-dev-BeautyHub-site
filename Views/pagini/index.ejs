@@ -144,6 +144,38 @@
                     </div>
             </div>
             </section>
+            <section class="container my-5">
+                <h2 class="mb-4">Testare Integrare Bootstrap</h2>
+            
+                <div class="row g-4">
+                <!-- test culori & border radius -->
+                    <div class="col-md-6">
+                        <div class="p-4 border shadow-sm" style="border-radius: var(--bs-border-radius-lg);">
+                            <h3>Butoane și Forme</h3>
+                            <p>Acest buton folosește culoarea <strong>$primary</strong> și rotunjirea setată de mine:</p>
+                            <button class="btn btn-primary btn-lg">Buton Mov Rotunjit</button>
+                            <button class="btn btn-secondary">Buton Albastru</button>
+                        </div>
+                    </div>
+
+                <!-- test teme background custom -->
+                    <div class="col-md-6">
+                        <div class="p-4 bg-tema-grid border">
+                            <h3>Temă Custom: Grid</h3>
+                            <p>Acest container folosește clasa <code>.bg-tema-grid</code> definită în Sass.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-tema-fundal mt-3">
+                        <h3>Temă Custom: Fundal</h3>
+                        <p>Acest container folosește clasa <code>.bg-tema-fundal</code>.</p>
+                    </div>
+                </div>
+
+                <!-- test breakpoints -->
+                <div class="alert alert-info mt-4 d-none d-md-block">
+                    <strong>Info Breakpoint:</strong> Acest mesaj este vizibil doar pe ecrane mai mari de <strong>850px</strong> (noul prag MD).
+                </div>
+            </section>
             <section id="promotii">
                 <h2>Promoții și oferte</h2>
                 <article>
@@ -406,37 +438,17 @@
 
         </div>
 
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <%
-                vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"]
-                 for (let imag of locals.imagini) { 
-                    lunaCurenta= vectLuni[(new Date()).getMonth()]
-                    if(imag.luni?.includes(lunaCurenta)) {
-                        %>
-                        <figure>
-                            <picture>
-                            <source srcset="<%- imag.fisier_mediu %>" media = "screen and (max-width :1100px)">
-                            <img src="<%- imag.fisier %>" alt="briose">
-                            <figcaption><%- imag.descriere %></figcaption>
-                            </picture>
-                        </figure>
-                    <% } %>
-                <% } %>
-                <figure>
-                    <div>
-                        <a href="/Resurse/Imagini/ethereal-sculpted-beauty-look.jpg">
-                            <img src="/Resurse/Imagini/ethereal-sculpted-beauty-look_200x200.jpg" alt="makeup_pastel">
-                        </a>
-                    </div>
-                    <figcaption>Makeup Pastel</figcaption>
-                </figure>
+        <hr class="special-separator">
 
+        <section id="galerie-statica">
+            <div class="reflexie-container">
+                <h2 class="text-reflectat" data-text="Galerie Produse">Galerie Produse</h2>
             </div>
-            <a href="/Resurse/Imagini/ethereal-sculpted-beauty-look.jpg" download="poza_descarcata.png"> Descarcă poza
-            </a>
-        </section>
+            <%- include('../fragmente/galerie', {imagini: imagini}) %>
+        </section> 
+
+        <hr class="special-separator">
+
         <section id="tutoriale-makeup">
             <h2>Tutoriale de Makeup</h2>
             <p>Urmăriți tutorialele noastre de makeup pentru a învăța cum să vă aplicați într-un mod cât mai interesant
@@ -455,9 +467,12 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
+            <div class="spatiere-verticala"></div>
 
             <h3>Ghid machiaj profesional pentru începători</h3>
             <embed src="/Resurse/Imagini/Essence_of_Makeup.pdf" type="application/pdf" width="600" height="400">
+            
+                <div class="duotone-container"></div>
         </section>
 
 

@@ -19,6 +19,15 @@ body {
     background-color: var(--culoare-fundal);
 }
 
+body.dark {
+    --culoare-fundal: #4c1199;         
+    --culoare-text: #F8F9FA;           
+    --bordercolor: #2400c7;
+    --culoare-highlight: #6042e9;
+    --culoare-casete: #484775;        
+    --culoare-grid: #421e49;
+}
+
 main {
     margin-left: var(--margine-pagina);
     margin-right: var(--margine-pagina);
@@ -57,7 +66,15 @@ h3 {
         0 1px currentColor, 0 -1px currentColor;
 }
 
-/* LINK uri */
+#titlu {
+    margin-top: 40px;
+    padding-left: 150px;
+}
+
+
+
+
+/* etapa 4: LINK uri */
 
 
 a:visited {
@@ -65,7 +82,7 @@ a:visited {
 }
 
 
-a[href^="http"]::before {
+a[href^="http"]::before { /* link urile externe care incep cu http sau https*/
     content: "⮳";
     display: inline-block;
     font-size: 1.5em; 
@@ -88,18 +105,18 @@ main a {
     background-image: radial-gradient(
         circle, 
         var(--culoare-link) 0%, 
-        var(--culoare-link) 40%, 
+        var(--culoare-link) 40%, /* de la 0% la 40% culoarea plina*/
         transparent 80%, 
         transparent 100%
     );
     
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 0 0; 
+    background-position: center; /* la mijlocul textului din link*/
+    background-repeat: no-repeat; /* un singur gradient*/
+    background-size: 0 0;  /* initial invizibil*/
     transition: background-size 0.6s ease-out; 
 }
 main a[href^="http"] {
-    background-position: calc(50% + 0.5em) 50%; 
+    background-position: calc(50% + 0.5em) 50%;  /* la mijlocul textului + spatiul pentru simbolul de link extern*/
     white-space: nowrap;
 }
 
@@ -119,6 +136,14 @@ a:active {
     outline: 2px solid var(--bordercolor); 
     border: 1px solid black;
 }
+
+
+
+
+
+
+
+
 
 #grid-pagina {
     display: grid;
@@ -387,7 +412,12 @@ figure img {
 }*/
 
 
-/* VIDEO */
+
+
+
+
+
+/* etapa 4: VIDEO */
 
 .welcome-media img, 
 .welcome-media video {
@@ -428,10 +458,16 @@ figure img {
 }
 
 
-video::cue {
+video::cue { /*stilizare subtitrari*/
     background-color: var(--culoare-grid); 
     color: var(--culoare-accent-inchis);   
 }
+
+
+
+
+
+
 
 
 /*TABEL*/
@@ -712,7 +748,7 @@ math mo {
 
 
 
-/* DUOTONE*/
+/* etapa 5: DUOTONE*/
 
 .duotone-container {
     width: 100%;
@@ -770,7 +806,7 @@ math mo {
 
 
 
-/* TAG HR*/
+/* etapa 5: TAG HR*/
 
 hr.special-separator {
     border: none;
@@ -810,8 +846,8 @@ hr.special-separator::after {
 
 
 
+/* etapa 5: TEXT OGLINDIT*/
 
-/* TEXT OGLINDIT*/
 
 .reflexie-container {
     display: flex;
@@ -854,121 +890,3 @@ hr.special-separator::after {
     color: var(--culoare-accent); 
 }
 
-
-
-
-
-
-
-
-@media print {
-    /* reset */
-    #grid-pagina {
-        display: block !important;
-        width: 100% !important;
-    }
-
-    /* copiii directi ai gridului care aveau grid-area */
-    #grid-pagina > * {
-        display: block !important;
-        width: 100% !important;
-        position: static !important;
-        margin-bottom: 20px !important;
-        page-break-inside: avoid; 
-        break-inside: avoid;
-        float: none !important;
-    }
-
-    /* reset elementele interne care erau grid  */
-    #welcome {
-        display: block !important;
-        padding-left: 0 !important;
-        padding-top: 10px !important;
-    }
-
-    main {
-        margin: 0 !important;
-        width: 100% !important;
-        display: block !important;
-    }
-
-    /* evitare sectionare */
-    article, section, p, li, tr, .categorie {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-
-    /* elemente ascunse */
-    img, video, iframe, canvas, meter, audio, 
-    figure, figcaption, embed, object,
-    .welcome-media, .container-video, .container-iframe, 
-    .taburi-iframe, #tutoriale-makeup h3,
-    nav, #hamburger, #ch-menu, .scroll-top, 
-    .back-to-top, .arrow, footer a[href="#top"] {
-        display: none !important;
-    }
-
-    /* link uri */
-    a {
-        text-decoration: none !important;
-        color: black !important;
-    }
-
-    header > h1:not(#t), /* ascunde orice h1 care nu are id="t" */
-    header > img,         
-    nav, 
-    #hamburger, 
-    #ch-menu {
-        display: none !important;
-    }
-
-    /* 5. banner prima pagina */
-    .banner-proiect {
-        display: block !important;
-        position: absolute;
-        top: 0;
-        left: 10%;
-        width: 80%;
-        text-align: center;
-        border: 2px dotted black !important;
-        padding: 10px;
-    }
-
-    /* titlu h1 prima pagina */
-    header h1#t {
-        display: block !important;
-        margin-top: 30vh !important;
-        text-align: center;
-        font-size: 2.5rem !important;
-        text-decoration: underline !important;
-        page-break-after: always !important;
-    }
-    
-    header h1 i { display: none !important; }
-
-    /* watermark */
-    body::after {
-        content: "Horeangă Ilinca";
-        position: fixed;
-        bottom: 1cm;
-        right: 1cm;
-        width: 100px;
-        height: 2cm;
-        border: 3px double black !important;
-        opacity: 0.65;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 10pt;
-        z-index: 9999;
-    }
-
-    /* margini */
-    @page { margin: 1cm; }
-    @page :left { margin-left: 2.5cm; margin-right: 0.5cm; }
-    @page :right { margin-left: 0.5cm; margin-right: 2.5cm; }
-
-    /* page break footer */
-    footer { page-break-before: always !important; }
-}

@@ -1,7 +1,9 @@
 <header>
         <h1>Beauty Hub</h1>
         <img src="/Resurse/Imagini/sigla-fara-fundal.png" alt="sigla" />
+        <script src="/Resurse/Js/tema.js"> </script>
         <nav>
+
 
             <label id="hamburger" for="ch-menu">
                 <img src="/Resurse/Imagini/Hamburger_icon_alb.png" alt="menu">
@@ -54,11 +56,23 @@
                         <i class="fa-solid fa-gifts"></i>
                         <span class="text-icon"> Produse</span>
                     </a>
-                    <ul>
+                    <!-- <ul>
                         <li><a href="/produse">Toate</a></li>
-                        <li><a href="/produse?tip=cofetarie">Makeup</a></li>
-                        <li><a href="/produse?tip=gelaterie">Skincare</a></li>
-                        <li><a href="/produse?tip=patiserie">Accesorii</a></li>
+                        <li><a href="/produse?tip=makeup">Makeup</a></li>
+                        <li><a href="/produse?tip=skincare">Skincare</a></li>
+                        <li><a href="/produse?tip=accesorii">Accesorii</a></li>
+                    </ul> -->
+                    <ul> 
+                        <li><a href="/produse">Toate</a></li>
+                        <% if (locals.categoriiMeniu) { %>
+                            <% for (let cat of locals.categoriiMeniu) { %>
+                                <li>
+                                    <a href="/produse?tip=<%- cat.unnest %>">
+                                        <%- cat.unnest.charAt(0).toUpperCase() + cat.unnest.slice(1) %>
+                                    </a>
+                                </li>
+                            <% } %>
+                        <% } %>
                     </ul>
                 </li>
 

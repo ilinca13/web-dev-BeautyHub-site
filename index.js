@@ -7,7 +7,7 @@ const sharp= require("sharp");
 const pg= require("pg");
 
 app= express();
-app.set("view engine", "ejs")
+app.set("view engine", "ejs") 
 
 obGlobal={
     obErori:null,
@@ -21,17 +21,25 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
-client=new pg.Client({
-    database:"proiect_tw",
-    user:"beauty_hub_admin",
-    password:"beauty_hub",
-    host:"localhost",
-    port:5432
-})
+// client=new pg.Client({
+//     database:"proiect_tw",
+//     user:"beauty_hub_admin",
+//     password:"beauty_hub",
+//     host:"localhost",
+//     port:5432
+// })
+
+client = new pg.Client({
+    database: "proiect_beauty_hub",
+    user: "beauty_hub_admin",
+    password: "beauty_hub",
+    host: "localhost",
+    port: 5432
+});
 
 client.connect()
 
-client.query("select * from prajituri where id>3", function (err, rez){
+client.query("select * from produse where id>3", function (err, rez){
    if (err) {
        console.log("Eroare query", err)
    }
@@ -40,13 +48,32 @@ client.query("select * from prajituri where id>3", function (err, rez){
     }
 })
 
-let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
+let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ] 
 for (let folder of vect_foldere){
     let caleFolder=path.join(__dirname, folder);
     if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});  // recusrive permite si subfoldere 
     }
 }
+
+app.use("/Resurse", express.static(path.join(__dirname, "Resurse")));
+app.use("/dist", express.static(path.join(__dirname, "/node_modules/bootstrap/dist")));
+
+
+
+app.use(function (req, res, next) {
+    client.query(`
+        SELECT unnest(enum_range(NULL::tipuri_produse))
+    `, function(err, rezultat) {
+        if (err) {
+            console.error("Eroare la extragerea categoriilor pentru meniu:", err);
+            res.locals.categoriiMeniu = []; // locals este un obiect disponibil in toate rutele, putem adauga proprietati care sa fie accesibile in toate rutele
+        } else {
+            res.locals.categoriiMeniu = rezultat.rows; 
+        }
+        next(); // next trebuie apelat pentru a continua procesarea cererii, trece la urmatoarea functie care se potriveste cu cererea
+    });
+});
 
 app.get(["/", "/index", "/home"], function(req, res){
     //res.sendFile(path.join(__dirname, "index.html"));
@@ -69,25 +96,33 @@ app.get("/galerie", function(req, res){
 app.get("/produse", function(req, res){
     let clauzaWhere="";
     if(req.query.tip){
-        clauzaWhere=` where tip_produs='${req.query.tip}'`
+        clauzaWhere=` where categorie_mare='${req.query.tip}'`
     }
-   client.query(`select * from prajituri ${clauzaWhere}`, function (err, rez){
+   client.query(`select * from produse ${clauzaWhere}`, function (err, rez){
    if (err) {
        console.log("Eroare", err)
        afisareEroare(res, 2)
    }
     else{
-        res.render("pagini/produse", {
-            produse: rez.rows,
-        optiuni: []
-    })
+        client.query("select * from unnest(enum_range(null::categorii_gama))", function(err, rezOptiuni){
+                if (err){
+                    afisareEroare(res, 2)
+                }
+                else{
+                    res.render("pagini/produse", {
+                        produse: rez.rows,
+                        optiuni: rezOptiuni.rows // vectorul de inregistrari date de select (vector de obiecte), fiecare inregistrare are proprietatea "unnest" care contine o valoare din enum
+                    })
+                }
+            })
+        
     }
 })
 });
 
 app.get("/produs/:id", function(req, res){
     
-   client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez){
+   client.query(`select * from produse where id=${req.params.id}`, function (err, rez){
    if (err) {
        console.log("Eroare", err)
        afisareEroare(res, 2)
@@ -98,8 +133,8 @@ app.get("/produs/:id", function(req, res){
         else
         {
              res.render("pagini/produs", {
-            prod: rez.rows[0]
-    })
+                prod: rez.rows[0]
+            })
         }
        
     }
@@ -107,31 +142,27 @@ app.get("/produs/:id", function(req, res){
 });
 
 function initErori(){
-    let continut = fs.readFileSync(path.join(__dirname,"Resurse/Json/erori.json")).toString("utf-8"); // nu trece la instructiunea urmatoare pana nu citeste tot fisierul
-    let erori=obGlobal.obErori=JSON.parse(continut)
+    let continut = fs.readFileSync(path.join(__dirname,"Resurse/Json/erori.json")).toString("utf-8"); 
+    let erori=obGlobal.obErori=JSON.parse(continut) 
     let err_default=erori.eroare_default
-    err_default.imagine=path.join(erori.cale_baza, err_default.imagine)
-    for (let eroare of erori.info_erori){
+    err_default.imagine=path.join(erori.cale_baza, err_default.imagine) 
+    for (let eroare of erori.info_erori){ 
         eroare.imagine=path.join(erori.cale_baza, eroare.imagine)
     }
 
 }
 initErori()
 
-function afisareEroare(res, identificator, titlu, text, imagine){
+function afisareEroare(res, identificator, titlu, text, imagine){// cele care nu sunt setate vor fi undefined evaluate ca false
     let eroare=obGlobal.obErori.info_erori.find((elem)=> 
-        elem.identificator==identificator)
+        elem.identificator==identificator) 
     let errDefault=obGlobal.obErori.eroare_default;
-    if(eroare?.status)
+    if(eroare?.status) // daca eroare nu este undefined si are proprietatea status
         res.status(eroare.identificator);
     res.render("pagini/eroare", {
-        imagine: imagine || eroare?.imagine || errDefault.imagine, 
+        imagine: imagine || eroare?.imagine || errDefault.imagine,
         titlu: titlu || eroare?.titlu || errDefault.titlu, 
         text: text || eroare?.text || errDefault.text});
-    //TO DO cautam eroarea dupa identificator
-    //daca sunt setate titlu, text, imagine, le folosim, 
-    //altfel folosim cele din fisierul json pentru eroarea gasita
-    //daca nu o gasim, afisam eroarea default
 
 }
 
@@ -314,10 +345,9 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis) {
     //res.sendFile(path.join(__dirname, "Resurse/Css/general.css"));
 //});
 
-app.use("/Resurse", express.static(path.join(__dirname, "Resurse")));
-app.use("/dist", express.static(path.join(__dirname, "/node_modules/bootstrap/dist")));
 
-app.get("/favicon.ico", function(req, res){
+
+app.get("/favicon.ico", function(req, res){ // unele browsere cauta faviconul in fisierul radacina
     res.sendFile(path.join(__dirname,"Resurse/Imagini/favicon/favicon.ico"))
 });
 
@@ -337,24 +367,24 @@ app.get("/cale2", function(req, res){
     res.end();
 });
 
-app.get("/*pagina", function(req, res){
+app.get("/*pagina", function(req, res){ 
     console.log("Cale pagina", req.url);
-    if (req.url.startsWith("/Resurse") && path.extname(req.url)==""){
-        afisareEroare(res,403);
-        return;
+    if (req.url.startsWith("/Resurse") && path.extname(req.url)==""){ 
+        afisareEroare(res,403); // ruta gresita
+        return; 
     }
-    if (path.extname(req.url)==".ejs"){
-        afisareEroare(res,400);
+    if (path.extname(req.url)==".ejs"){ 
+        afisareEroare(res,400); // cerere gresita
         return;
     }
     try{
-        res.render("pagini"+req.url, function(err, rezRandare){
+        res.render("pagini"+req.url, function(err, rezRandare){ 
             if (err){
                 if (err.message.includes("Failed to lookup view")){
-                    afisareEroare(res,404)
+                    afisareEroare(res,404); // pagina nu a fost gasita
                 }
                 else{
-                    afisareEroare(res);
+                    afisareEroare(res); 
                 }
             }
             else{
@@ -364,7 +394,7 @@ app.get("/*pagina", function(req, res){
         });
     }
     catch(err){
-        if (err.message.includes("Cannot find module")){
+        if (err.message.includes("Cannot find module")){ 
             afisareEroare(res,404)
         }
         else{

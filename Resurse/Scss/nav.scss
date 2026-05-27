@@ -1,4 +1,3 @@
-
 /* variabile */
 $latime-buton: 115px;
 $inaltime-buton: 30px;
@@ -6,26 +5,40 @@ $transition-fast: 0.3s linear;
 $transition-slow: 0.6s ease-in-out;
 $culoare-text: black; 
 
+/* placeholders */
+%dimensiuni-buton {
+  width: var(--latime-buton);
+  height: var(--inaltime-buton);
+}
+
+%reset-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+%stil-meniu-mobil-fundal {
+  background-color: var(--bordercolor) !important;
+}
+
 /* nav */
 nav {
   --latime-buton: #{$latime-buton};
   --inaltime-buton: #{$inaltime-buton};
   background-color: var(--bordercolor);
-  position: relative; /*ancora pentru meniul mobil*/
+  position: relative; /*ancora pentru meniul mobil */
 }
 
 #hamburger, #ch-menu {
   display: none;
-}
+} 
 
 ul.meniu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex; /*butoane aliniate implicit pe orizontala*/
+  @extend %reset-lista;
+  display: flex; 
   position: relative;
 
-    /*elementele meniului principal*/
+    /*toate link urile meniului */
 
   a {
     text-decoration: none !important;
@@ -40,65 +53,65 @@ ul.meniu {
     }
   }
 
-  > li { /*doar copiii directi, fara submeniu*/
-    display: inline-block;
-    width: var(--latime-buton);
-    height: var(--inaltime-buton);
+  > li { /*exclusiv meniul principal*/
+    display: inline-block; /*pentru dimensiuni fixe inline */
+    @extend %dimensiuni-buton;
     background-color: var(--culoare-fundal);
     border: 1px solid var(--bordercolor);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     line-height: var(--inaltime-buton);
-    position: relative;  /* ancora pentru bara de gradent ::after*/
+    position: relative;  
     z-index: 1; /* elementul vine peste fundal*/
     transition: all $transition-fast;
 
-    &:hover {
-      background-color: var(--bordercolor);
-      filter: brightness(1.1); /*cu 10% mai luminos*/
-
-      &::after {
-        transform: translateY(calc(var(--inaltime-buton) - 4px)); /*bara coboara in jos cu buton - 4px*/
-        opacity: 1; /*bara devine vizibila*/
-      }
-    }
-
-    &::after {
+    &::after { 
       content: "";
       position: absolute;
-      top: 0;
+      top: 0; /* coltul stanga sus al butonului*/
       left: 0;
       width: 100%;
       height: 4px;
       background: linear-gradient(to right, black, white, black);
       opacity: 0;
-      transform: translateY(-100%); /*bara incepe deasupra butonului*/
-      transition: all 0.5s ease; /*animatie pentru bara*/
-      pointer-events: none; /*se ignora bara la hover*/
-      z-index: 0; /*sta cu un strat in spate*/
+      transform: translateY(-100%); /*bara se muta deasupra butonului cu inaltimea barii*/
+      transition: all 0.5s ease; 
+      pointer-events: none; /*se ignora la hover*/
+      z-index: 0; 
     }
+
+    &:hover {
+      background-color: var(--bordercolor);
+      filter: brightness(1.1); 
+
+      &::after {
+        transform: translateY(calc(var(--inaltime-buton) - 4px)); /*bara coboara in jos pe Oy cu h buton - 4px*/
+        opacity: 1; 
+      }
+    }
+
+    
   }
 
-  /* elementele submeniurilor*/
+  
 
-  ul {
+  ul { /* submeniurile*/
     position: absolute;
-    top: 100%; /* submeniul apare imediat sub butonul parinte*/
+    top: 100%; /* apare imediat sub butonul parinte*/
     left: 0;
-    z-index: 10; /*sta deasupra elementelor din pagina*/
+    z-index: 10; 
     list-style: none;
     padding: 0;
     margin: 0;
     
-    transform: scale(0); /* submeniul incepe invizibil scalat la 0*/
-    transform-origin: center; /* punctul de origine pentru scalare, aici centrul submeniului */
-    opacity: 0; /* submeniul incepe complet transparent */
-    transition: transform $transition-slow, opacity $transition-slow; /* animatie pentru aparitia submeniului */
+    transform: scale(0); /* incepe invizibil scalat la 0*/
+    transform-origin: center; /* punctul de origine pentru scalare */
+    opacity: 0; 
+    transition: transform $transition-slow, opacity $transition-slow; 
 
     li {
       background-color: var(--culoare-fundal);
-      width: var(--latime-buton);
-      height: var(--inaltime-buton);
+      @extend %dimensiuni-buton;
       border: 1px solid var(--bordercolor);
       
       &:hover {
@@ -117,6 +130,10 @@ ul.meniu {
     opacity: 1;
   }
 }
+
+
+
+
 
 /* tableta */
 @media (max-width: 1000px) {
@@ -138,38 +155,42 @@ ul.meniu {
   }
 }
 
-/* mobile */
+
+
+
+
+/* mobil */
 @media (max-width: 700px) {
   #hamburger {
     display: block;
-    cursor: pointer;
+    cursor: pointer; /* schimba sageata in mana*/
     img {
-      height: 2em;
+      height: 2em; 
     }
   }
 
   ul.meniu {
     all: unset;
-    display: block !important;
+    display: block !important; /* meniul va ocupa toata latime*/
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     z-index: 1000;
     background-color: var(--culoare-fundal);
-    clip-path: circle(0% at 0 0);
+    clip-path: circle(0% at 0 0); /* invizibil ca un cerc mic in coltul stanga sus*/
     transition: clip-path $transition-slow;
-    pointer-events: none;
+    pointer-events: none; /* nu poate fi accesat pana nu devine vizibil */
 
     li {
       display: block;
       width: 100% !important;
       border-bottom: 1px solid var(--bordercolor);
-      background-color: var(--bordercolor);
+      @extend %stil-meniu-mobil-fundal;
       height: auto !important;
       line-height: normal !important;
 
-      &::after {
+      &::after { 
         display: none !important;
         content: none !important;
       }
@@ -179,20 +200,20 @@ ul.meniu {
         text-align: center;
         text-decoration: none !important;
         color: $culoare-text !important;
-        font-size: 1.1rem !important; // text mai mare 
+        font-size: 1.1rem !important; 
       }
 
       ul {
-        display: none !important;
-        position: static !important;
+        display: none !important; /* submeniu initial ascuns*/
+        position: static !important; /* submeniurile vor fi in fluxul normal si vor impinge mai jos restul elem*/
         transform: scale(1) !important;
         opacity: 1 !important;
         width: 100% !important;
-        background-color: var(--bordercolor) !important;
+        @extend %stil-meniu-mobil-fundal;
 
         li {
           padding-left: 0;
-          background-color: var(--bordercolor) !important;
+          @extend %stil-meniu-mobil-fundal;
           
           a {
             padding: 10px 15px;
@@ -202,29 +223,29 @@ ul.meniu {
       }
 
       &:hover > ul {
-        display: block !important;
+        display: block !important; /* submeniu vizibil la hover peste parinte*/
       }
     }
   }
 
-  #ch-menu:checked + ul.meniu {
+  #ch-menu:checked + ul.meniu { /* fratele urmator inclus in nav apare la click*/
     clip-path: circle(150% at 0 0);
-    pointer-events: auto;
+    pointer-events: auto; /*meniurile pot fi accesate*/
   }
 
   ul.meniu {
     i { 
-        display: none !important;
+        display: none !important; /* iconite ascunse*/
         color: $culoare-text !important; 
     }
 
-    > li:first-child {
+    > li:first-child { /*butonul Acasa, primul copil direct*/
       i { display: inline-block !important; }
       .text-icon { display: none !important; }
     }
 
     > li:not(:first-child) .text-icon {
-      display: inline-block !important;
+      display: inline-block !important; 
     }
   }
 }

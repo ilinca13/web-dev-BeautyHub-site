@@ -133,3 +133,57 @@
     z-index: 9999;
     font-weight: bold;
 }
+
+/* Containerul care grupează cele două prețuri */
+.zona-pret-oferta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Prețul vechi din baza de date (va fi tăiat) */
+.pret-vechi {
+    text-decoration: line-through;
+    color: #757575; /* O nuanță de gri care să contrasteze cu fundalul alb */
+    font-size: 0.9rem;
+}
+
+/* Prețul nou calculat din JS/EJS cu reducerea aplicată */
+.pret-nou {
+    font-weight: bold;
+    color: #2e7d32; /* Verde închis pentru prețul nou, vizibil */
+    font-size: 1.1rem;
+}
+
+/* Badge-ul cu procentul de reducere (ex: 20% OFF) */
+.badge-reducere {
+    background-color: var(--culoare-accent-inchis, #8E7BE5);
+    color: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Animația de tip puls pentru a atrage atenția asupra reducerii */
+@keyframes pulse-reducere {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(142, 123, 229, 0.4);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 5px rgba(142, 123, 229, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(142, 123, 229, 0);
+    }
+}
+
+/* Clasa care declanșează animația continuă */
+.animate-pulse {
+    animation: pulse-reducere 2s infinite ease-in-out;
+    display: inline-block;
+}

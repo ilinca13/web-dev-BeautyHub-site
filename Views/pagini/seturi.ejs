@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Beauty Hub oferă seturi promoționale de makeup, skincare și accesorii de înfrumusețare la prețuri reduse.">
+        <meta name="keywords" content="seturi, cosmetice, cadou, beauty hub, makeup, skincare, accesorii, reduceri pachete">
+        <link rel="stylesheet" href="/Resurse/Css/produse.css" type="text/css" />
+        <title>Beauty Hub - Seturi Speciale</title>
+        
+        <%- include("../fragmente/head") %>     
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body>
+
+    <%- include("../fragmente/header") %>
+
+    <main class="container my-4">
+        <div class="p-4 bg-light text-dark shadow-sm border mb-4" style="border-radius: var(--bs-border-radius);">
+            <h1 class="h3 text-primary mb-2 text-uppercase fw-bold"><i class="bi bi-gift-fill me-2"></i> Seturi Cadou & Colecții Exclusive</h1>
+            <p class="text-secondary m-0">Descoperă combinațiile noastre unice de produse, împachetate special pentru tine. Fiecare set beneficiază de un discount garantat calculat automat în funcție de numărul de elemente incluse!</p>
+        </div>
+
+        <section id="seturi-produse" class="mt-4">
+            <div class="row g-4">
+                <% if (locals.seturi && locals.seturi.length > 0) { %>
+                    <% for (let set of locals.seturi) { %>
+                        <div class="col-12 col-lg-6">
+                            <article class="card h-100 shadow-sm border p-3 bg-white" style="border-radius: var(--bs-border-radius);">
+                                
+                                <div class="card-body p-2 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h3 class="h4 text-primary fw-bold mb-1"><%- set.nume_set %></h3>
+                                        <p class="text-muted small border-bottom pb-2 mb-3"><%- set.descriere_set %></p>
+                                        
+                                        <h5 class="h6 fw-bold text-secondary mb-3"><i class="bi bi-box-seam me-1"></i> Produse incluse în acest set (<%- set.numar_produse %>):</h5>
+                                        
+                                        <div class="d-flex gap-3 flex-wrap justify-content-start mb-3">
+                                            <% set.produse.forEach(prod => { %>
+                                                <div class="text-center p-2 border bg-light rounded style-mini-prod" style="width: 120px; transition: transform 0.2s;">
+                                                    <a href="/produs/<%- prod.id %>" class="text-document-none text-dark d-block h-100">
+                                                        <figure class="mb-1" style="height: 75px; overflow: hidden; border-radius: 4px;">
+                                                            <img src="/Resurse/Imagini/produse/<%- prod.imagine %>" alt="[imagine <%- prod.nume %>]" class="w-100 h-100" style="object-fit: cover;" />
+                                                        </figure>
+                                                        <p class="small fw-semibold m-0 text-truncate" title="<%- prod.nume %>"><%- prod.nume %></p>
+                                                        <span class="small text-success fw-bold"><%- prod.pret %> lei</span>
+                                                    </a>
+                                                </div>
+                                            <% }) %>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-top pt-3 mt-2 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                        <div>
+                                            <span class="text-muted text-decoration-line-through small"><%- set.pret_vechi %> lei</span>
+                                            <span class="h4 fw-bold text-danger ms-2"><%- set.pret_final %> lei</span>
+                                        </div>
+                                        <button class="btn btn-dark btn-sm fw-bold d-inline-flex align-items-center gap-1">
+                                            <i class="bi bi-cart-plus-fill"></i> Adaugă pachetul
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </article>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <div class="col-12">
+                        <p class="alert alert-warning">Nu există seturi disponibile momentan.</p>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    <script src="/Resurse/Js/schimba_tema.js"></script>
+    
+    <style>
+        .style-mini-prod:hover {
+            transform: scale(1.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-color: var(--bs-primary) !important;
+        }
+        .text-document-none {
+            text-decoration: none !important;
+        }
+    </style>
+    </body>
+</html>

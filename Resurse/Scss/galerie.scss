@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     grid-gap: 20px;
-    counter-reset: cifre-grecesti;
+    counter-reset: cifre-grecesti; 
 
     figure {
         position: relative;
@@ -33,7 +33,7 @@
             padding: 15px;
             background-color: rgba(255, 255, 255, 0.9);
             transition: transform 1.1s linear;
-            transform-origin: center;
+            transform-origin: center; 
 
             &::before {
                 counter-increment: cifre-grecesti;

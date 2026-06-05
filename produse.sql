@@ -54,6 +54,49 @@ INSERT INTO produse (nume, descriere, imagine, categorie_mare, subcategorie, pre
 ('Dischete Demachiante din Bambus', 'Set de 10 dischete refolosibile din fibre ecologice de bambus cu săculeț inclus.', 'dischete-bambus.jpg', 'accesorii', 'accesibile', 25.00, 45, '2025-10-12 16:40:00', 'ten', 'bumbac, fibre de bambus', true, 'EcoBeauty');
 
 
+CREATE TABLE IF NOT EXISTS seturi (
+    id serial PRIMARY KEY,
+    nume_set VARCHAR(100) UNIQUE NOT NULL,
+    descriere_set TEXT
+);
+
+-- Creare tabel asociere_set
+CREATE TABLE IF NOT EXISTS asociere_set (
+    id serial PRIMARY KEY,
+    id_set INT REFERENCES seturi(id) ON DELETE CASCADE,
+    id_produs INT REFERENCES produse(id) ON DELETE CASCADE
+);
+
+-- Populare tabel seturi (5 seturi diferite)
+INSERT INTO seturi (nume_set, descriere_set) VALUES
+('Set Zilnic Maybelline Flawless', 'Rutina de bază ideală pentru un ten mat și privire intensă în fiecare zi.'),
+('Set Glam Complet NYX', 'Tot ce ai nevoie pentru un machiaj profesional rezistent la transfer și evenimente.'),
+('Set Rutină Anti-Aging Luxury', 'Îngrijire premium de lux pentru combaterea ridurilor și hidratare profundă.'),
+('Set Esențial Accesorii', 'Uneltele de nelipsit pentru aplicarea perfectă și demachierea eco-friendly a produselor.'),
+('Set Buze și Ochi Sclipitori', 'Combinația perfectă pentru buze voluminoase și o privire dramatică la preț accesibil.');
+
+-- Populare asociere_set (Fiecare set are minim 2 produse)
+-- Set 1 (Maybelline): Fond de ten (id: 1), Corector (id: 2), Mascara (id: 3) -> 3 produse
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+(1, 1), (1, 2), (1, 3);
+
+-- Set 2 (NYX): Ruj (id: 4), Paletă (id: 5), Spray (id: 6) -> 3 produse
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+(2, 4), (2, 5), (2, 6);
+
+-- Set 3 (Estee Lauder & L\'Oreal): Ser ANR (id: 11), Cremă Supreme (id: 12), Ser Revitalift (id: 8) -> 3 produse
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+(3, 11), (3, 12), (3, 8);
+
+-- Set 4 (Accesorii): Pensule (id: 20), Burete (id: 21), Dischete (id: 22) -> 3 produse
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+(4, 20), (4, 21), (4, 22);
+
+-- Set 5 (Essence): Mascara (id: 13), Gloss (id: 14) -> 2 produse
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+(5, 13), (5, 14);
+
+
 GRANT ALL PRIVILEGES ON DATABASE proiect_beauty_hub TO beauty_hub_admin;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO beauty_hub_admin;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO beauty_hub_admin;

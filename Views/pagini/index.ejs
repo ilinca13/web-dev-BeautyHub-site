@@ -7,22 +7,36 @@
     <meta name="keywords" content="makeup, Beauty Hub, fond de ten, corector, ruj, paletă de farduri, mascara, tuș lichid, creion de buze, evenimente, natural, tendințe">
 
     <%- include('../fragmente/head.ejs') %>
-    
-    
 </head>
 
 <body>
     
     <%- include('../fragmente/header.ejs') %>
     
-    <main> <!--  comentariu -->
+    <main>
+        <% if (locals.ofertaActiva) { %>
+            <section id="banner-oferta" class="banner-promotional text-center p-4 shadow-sm" data-finalizare="<%= ofertaActiva['data-finalizare'] %>">
+                <div class="container">
+                    <h2 class="text-uppercase mb-2">🔥 Ofertă Fulger Activă! 🔥</h2>
+                    <p class="fs-4">
+                        Ai un discount masiv de <span class="badge bg-danger fs-3">-<%= ofertaActiva.reducere %>%</span> 
+                        pentru toate produsele din categoria <strong class="text-primary"><%= ofertaActiva.categorie %></strong>!
+                    </p>
+                    <div class="temporizator-container">
+                        <span>Timp rămas: </span>
+                        <span id="temporizator-oferta" class="font-monospace">00:00:00</span>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
         <div id="grid-pagina">
-            <!--  welcome -->
+
             <section id="welcome">
                 <div class="welcome-text">
                     <hgroup>
                         <h2>Bine ai venit!</h2>
-                        <p><button class="btn btn-primary">Buton Bootstrap</button></p>
+                        <!-- <p><button class="btn btn-primary">Buton Bootstrap</button></p> -->
                         <p class="subtitlu"> Lasă-te inspirată de cele mai bune produse de makeup pe Beauty Hub, la un
                             preț avantajos!</p>
                         <p> IP: <%- locals.ip %></p>
@@ -49,7 +63,7 @@
                     </p>
                     <p> Descoperă Beauty Hub și navighează selecția noastră de <b>fonduri de ten</b>, <b>corectoare</b>,
                         <b>rujuri</b>, <b>palete de farduri</b>, <b>mascara</b>, <b>tușuri lichide</b> și multe altele,
-                        pentru stilul de machiaj dorit.
+                        for stilul de machiaj dorit.
                     </p>
 
                     <div class="intro-oferte">
@@ -106,15 +120,10 @@
                         <div id="dv-prezentare">
                             <figure id="fig-makeup">
                                 <picture>
-                                    <!-- il ia pe primul care se potriveste cu query-ul din media-->
-
-                                    <!-- imagine mica pentru mobil -->
                                     <source srcset="/Resurse/Imagini/makeup_before_after_200x200.jpg"
                                         media="(max-width:700px)" />
-                                    <!-- imagine medie pentru tableta -->
                                     <source srcset="/Resurse/Imagini/makeup_before_after_640x360.jpg"
                                         media="(max-width:1200px)" />
-                                    <!-- imagine mare pentru desktop -->
                                     <img src="/Resurse/Imagini/makeup_before_after.jpg"
                                         alt="Transformare machiaj înainte și după"
                                         title="Machiaj profesional Beauty Hub">
@@ -148,8 +157,7 @@
                 <h2 class="mb-4">Testare Integrare Bootstrap</h2>
             
                 <div class="row g-4">
-                <!-- test culori & border radius -->
-                    <div class="col-md-6">
+                <div class="col-md-6">
                         <div class="p-4 border shadow-sm" style="border-radius: var(--bs-border-radius-lg);">
                             <h3>Butoane și Forme</h3>
                             <p>Acest buton folosește culoarea <strong>$primary</strong> și rotunjirea setată de mine:</p>
@@ -158,8 +166,7 @@
                         </div>
                     </div>
 
-                <!-- test teme background custom -->
-                    <div class="col-md-6">
+                <div class="col-md-6">
                         <div class="p-4 bg-tema-grid border">
                             <h3>Temă Custom: Grid</h3>
                             <p>Acest container folosește clasa <code>.bg-tema-grid</code> definită în Sass.</p>
@@ -171,7 +178,6 @@
                     </div>
                 </div>
 
-                <!-- test breakpoints -->
                 <div class="alert alert-info mt-4 d-none d-md-block">
                     <strong>Info Breakpoint:</strong> Acest mesaj este vizibil doar pe ecrane mai mari de <strong>850px</strong> (noul prag MD).
                 </div>
@@ -198,7 +204,7 @@
                         <li>Un <i>ruj stick</i></li>
                         <li><b>Gratis</b>: un <i>set</i> de produse de <i>îngrijire a pielii</i></li>
                         <li><b>Gratis</b>: o <i>mască de dormit</i></li>
-                    </ol>
+                    </</ol>
 
                 </article>
 
@@ -218,7 +224,7 @@
                                 <mn class="suta">100</mn>
                             </mfrac>
                         </mrow>
-                    </math>
+                    </</math>
                 </article>
 
                 <article>
@@ -292,7 +298,6 @@
                 </section>
 
             </section>
-            <!-- Evenimente -->
             <section id="evenimente">
                 <h2>Evenimente Beauty Hub</h2>
                 <ul>
@@ -406,7 +411,7 @@
                 </details>
                 <details>
                     <summary>Pot returna un produs dacă nu sunt mulțumită?</summary>
-                    <p>Da, puteți returna produsul în 14 zile de la livrare, cu ambalajul intact și bonul fiscal. Pentru
+                    <p>Ja, puteți returna produsul în 14 zile de la livrare, cu ambalajul intact și bonul fiscal. Pentru
                         mai multe detalii, consultați politica de returnare.</p>
                 </details>
                 <details>
@@ -436,9 +441,7 @@
                 </meter>
             </section>
 
-        </div>
-
-        <hr class="special-separator">
+        </div> <hr class="special-separator">
 
         <section id="galerie-statica">
             <div class="reflexie-container">
@@ -475,11 +478,10 @@
                 <div class="duotone-container"></div>
         </section>
 
-
-
     </main>
 
-<!-- Footer -->
-    <%- include('../fragmente/footer.ejs') %>
+    <%- include('../fragmente/header.ejs') %>
+
+    <script src="/Resurse/Js/temporizator.js" defer></script>
 </body>
 </html>

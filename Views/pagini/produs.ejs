@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="ro">
+<html lang="ro">
     <head>
         <meta name="description" content="Detalii despre produsul cosmetic de înaltă calitate de la Beauty Hub. Aici vei găsi informații complete despre ingredientele, beneficiile și modul de utilizare al produsului nostru de makeup sau skincare. Descoperă cum acest produs poate îmbunătăți rutina ta de înfrumusețare și te poate ajuta să obții un look strălucitor și sănătos.">
         <meta name="keywords" content="cosmetice, beauty hub, makeup, skincare, accesorii, machiaj, ruj, fond de ten, paletă de farduri, mascara, tuș lichid, creion de buze, evenimente, natural, tendințe, <%- locals.prod.brand %>, <%- locals.prod.nume %>">
@@ -9,28 +9,76 @@
         <link href="/Resurse/Css/produs.css" type="text/css" rel="stylesheet" />
     </head>
 
+    <body>
         <%- include("../fragmente/header") %>
     <main>
-        <section>
+        <section class="container mt-4">
             <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Brand: <span class="brand"><%- locals.prod.brand %></span></p>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente_cheie"><%- locals.prod.ingrediente_cheie %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.cantitate_ml_g %> </span>ml/g</p>
-                    <p>Categorie: <span class="categorie-mare"><%- locals.prod.categorie_mare %> </span></p>
-                    <p>Gamă: <span class="subcategorie"><%- locals.prod.subcategorie %></span></p>
-                    <p>Zonă aplicare: <span class="zona"><%- locals.prod.zona_aplicare %></span></p>
-                    <p>Cruelty Free: <span class="cruelty"><%- locals.prod.cruelty_free ? 'Da' : 'Nu' %></span></p>
-                    <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
-                    <figure class="imag-produs">
-                        <img  src="/Resurse/Imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
-                </article>
             
+            <article id="art-produs">
+                <!-- Zona Stângă: Caseta Imaginii cu Contur Colorat Intens -->
+                <figure class="imag-produs">
+                    <img src="/Resurse/Imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                </figure>    
+
+                <!-- Zona Dreaptă: Categoriile Bold și Valorile în Casete Colorate -->
+                <div class="detalii-produs">
+                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                    
+                    <p><strong>Brand:</strong> <span><%- locals.prod.brand %></span></p>
+                    <p><strong>Preț:</strong> <span><%- locals.prod.pret %> RON</span></p>
+                    <p><strong>Descriere:</strong> <span><%- locals.prod.descriere %></span></p>
+                    <p><strong>Ingrediente:</strong> <span><%- locals.prod.ingrediente_cheie %></span></p>
+                    <p><strong>Gramaj:</strong> <span><%- locals.prod.cantitate_ml_g %> ml/g</span></p>
+                    <p><strong>Categorie:</strong> <span><%- locals.prod.categorie_mare %></span></p>
+                    <p><strong>Gamă:</strong> <span><%- locals.prod.subcategorie %></span></p>
+                    <p><strong>Zonă aplicare:</strong> <span><%- locals.prod.zona_aplicare %></span></p>
+                    <p><strong>Cruelty Free:</strong> <span><%- locals.prod.cruelty_free ? 'Da' : 'Nu' %></span></p>
+                    <p><strong>Data adăugare:</strong> <span><%- locals.prod.data_adaugare %></span></p>
+                </div>
+            </article>
         </section>
+
+        <!-- ==========================================================================
+             SECTIUNE SETURI PROMOȚIONALE DIN CARE FACE PARTE PRODUSUL
+             ========================================================================== -->
+        <% if (locals.seturi && locals.seturi.length > 0) { %>
+            <section class="sectiune-seturi">
+                <h2>Disponibil și în seturi avantajoase:</h2>
+                <div class="containere-seturi-produs">
+                    <% for (let set of locals.seturi) { %>
+                        <div class="card-set-produs">
+                            <h3><%= set.nume_set %></h3>
+                            <p class="descriere-set"><%= set.descriere_set %></p>
+                            <p class="pret-set-afisat">Preț special Set: <strong><%= set.pret_final %> RON</strong></p>
+                            
+                            <h4 class="mb-3" style="font-size: 1.05rem; font-weight: bold; color: #444;">Componentele acestui set:</h4>
+                            
+                            <!-- Grid fluid pentru produsele din set -->
+                            <div class="row g-3 Bird-produse-componente">
+                                <% for (let p of set.produse) { %>
+                                    <div class="col-6 col-sm-4 col-md-4">
+                                        <div class="produs-din-set-card">
+                                            <a href="/produs/<%= p.id %>" class="d-block mb-2">
+                                                <img src="/Resurse/Imagini/produse/<%= p.image || p.imagine %>" alt="<%= p.nume %>" />
+                                            </a>
+                                            <a href="/produs/<%= p.id %>" class="link-produs-set d-block text-truncate" title="<%= p.nume %>">
+                                                <%= p.nume %>
+                                            </a>
+                                            <span class="pret-produs-mic d-block mt-2"><%= p.pret %> RON</span>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+        <% } else { %>
+            <section class="sectiune-seturi">
+                <p class="mesaj-fara-seturi">Acest produs nu face parte momentan din niciun set promoțional.</p>
+            </section>
+        <% } %>
     </main>
 
     <%- include("../fragmente/footer") %>

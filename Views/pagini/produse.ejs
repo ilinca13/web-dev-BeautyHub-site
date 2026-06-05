@@ -24,15 +24,18 @@
                 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <label for="inp-nume" class="form-label fw-bold">Nume produs</label>
-                    <input type="text" id="inp-nume" class="form-control" placeholder="Ex: mascarra -> mascara">
+                    <input type="text" id="inp-nume" class="form-control" placeholder="Caută un produs..." maxlength="<%- locals.lungimeMaxNume %>">
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <label for="inp-pret" class="form-label fw-bold">Preț minim: <span id="infoRange" class="badge bg-pret-minim text-dark ms-1">(0)</span></label>
+                    <label for="inp-pret" class="form-label fw-bold">Preț minim: <span id="infoRange" class="badge bg-pret-minim text-dark ms-1">(<%- locals.pretMinim %>)</span></label>
                     <div class="d-flex align-items-center gap-2">
-                        <span class="small text-muted">0 lei</span>
-                        <input type="range" id="inp-pret" class="form-range" value="0" min="0" max="380"> 
-                        <span class="small text-muted">380 lei</span>
+                        <span class="small text-muted"><%- locals.pretMinim %> lei</span>
+                        <input type="range" id="inp-pret" class="form-range" 
+                               value="<%- locals.pretMinim %>" 
+                               min="<%- locals.pretMinim %>" 
+                               max="<%- locals.pretMaxim %>"> 
+                        <span class="small text-muted"><%- locals.pretMaxim %> lei</span>
                     </div>
                 </div>
 
@@ -40,17 +43,17 @@
                     <label for="inp-datalist" class="form-label fw-bold">Brand (Datalist)</label>
                     <input type="text" id="inp-datalist" list="lista-branduri" class="form-control" placeholder="Alege sau scrie un brand...">
                     <datalist id="lista-branduri">
-                        <option value="Maybelline"></option>
-                        <option value="L'Oreal"></option>
-                        <option value="NYX"></option>
-                        <option value="Revlon"></option>
-                        <option value="Fenty Beauty"></option>
+                        <% if (locals.branduri) { %>
+                            <% for (let brnd of locals.branduri) { %>
+                                <option value="<%- brnd %>"></option>
+                            <% } %>
+                        <% } %>
                     </datalist>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <label for="inp-categorie" class="form-label fw-bold">Categorie principală</label>
-                    <select id="inp-categorie" class="form-select">
+                    <select id="inp-categorie" class="form-select" data-max-optiuni="<%- locals.numarOptiuniEnum %>">
                         <option id="sel-toate" selected value="toate">oricare</option>
                         <option value="luxury">Luxury</option>
                         <option value="profesionale">Profesionale</option>
@@ -62,16 +65,18 @@
                     <label for="inp-subcategorie" class="form-label fw-bold">Gamă (Ctrl + Click)</label>
                     <select id="inp-subcategorie" class="form-select" multiple size="3">
                         <option value="toate" selected>Oricare gamă</option>
-                        <option value="luxury">Luxury</option>
-                        <option value="profesionale">Profesionale</option>
-                        <option value="accesibile">Accesibile</option>
+                        <% if (locals.optiuni) { %>
+                            <% for (let opt of locals.optiuni) { %>
+                                <option value="<%- opt.unnest %>"><%- opt.unnest.charAt(0).toUpperCase() + opt.unnest.slice(1) %></option>
+                            <% } %>
+                        <% } %>
                     </select>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-floating">
-                        <textarea id="inp-descriere" class="form-control" placeholder="Ex: parfum, iritații" style="height: 85px;"></textarea>
-                        <label for="inp-descriere">Exclude din descriere cuvintele...</label>
+                        <textarea id="inp-descriere" class="form-control" placeholder="Caută..." style="height: 85px;"></textarea>
+                        <label for="inp-descriere">Exclude din descriere în cele <%- locals.totalProduseCurent %> produse...</label>
                     </div>
                 </div>
 
@@ -93,8 +98,8 @@
                         <input type="radio" class="btn-check" name="gr_cantitate" id="rad-standard" value="15:60" autocomplete="off">
                         <label class="btn btn-outline-primary" for="rad-standard">Standard (15 - 60 ml/g)</label>
 
-                        <input type="radio" class="btn-check" name="gr_cantitate" id="rad-mare" value="60:1000000000" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="rad-mare">Mare (&ge; 60 ml/g)</label>
+                        <input type="radio" class="btn-check" name="gr_cantitate" id="rad-mare" value="60:<%- locals.gramajMaxim %>" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="rad-mare">Mare (60 - <%- locals.gramajMaxim %> ml/g)</label>
 
                         <input type="radio" class="btn-check" name="gr_cantitate" id="rad-toate" value="toate" checked autocomplete="off">
                         <label class="btn btn-outline-primary" for="rad-toate">Toate</label>
@@ -103,7 +108,7 @@
 
                 <div class="col-12">
                     <div id="grup-ingrediente-complex" class="p-3 border border-dashed rounded bg-white">
-                        <span class="d-block fw-bold mb-3 text-secondary">Filtrare avansată ingrediente (Bifează + alege comportament):</span>
+                        <span class="d-block fw-bold mb-3 text-secondary">Filtrare ingrediente (Ponderate la gramajul maxim de <%- locals.gramajMaxim %> ml/g detectat în stoc):</span>
                         
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
                             
@@ -212,7 +217,21 @@
                                 </figure>
                                 
                                 <ul class="caracteristici list-unstyled border p-2 rounded bg-light">
-                                    <li><span class="fw-bold text-muted">Preț:</span> <span class="val-pret fw-bold text-success"><%- prod.pret %></span> lei</li>
+                                    <li>
+                                        <span class="fw-bold text-muted">Preț:</span> 
+                                        <% 
+                                            // Evaluăm potrivirea categoriei mari a produsului cu oferta activă
+                                            let areOfertaMecanism = locals.ofertaActiva && (ofertaActiva.categorie.toLowerCase() === prod.categorie_mare.toLowerCase());
+                                            if (areOfertaMecanism) { 
+                                                let pretCalculatNou = prod.pret - (prod.pret * ofertaActiva.reducere / 100);
+                                        %>
+                                            <span class="pret-vechi text-muted text-decoration-line-through me-2"><%- prod.pret %> lei</span>
+                                            <span class="pret-nou fw-bold text-success"><span class="val-pret"><%- pretCalculatNou.toFixed(2) %></span> lei</span>
+                                            <span class="badge bg-danger ms-1 animate-pulse"><%- ofertaActiva.reducere %>% OFF</span>
+                                        <% } else { %>
+                                            <span class="val-pret fw-bold text-success"><%- prod.pret %></span> lei
+                                        <% } %>
+                                    </li>
                                     <li><span class="fw-bold text-muted">Brand:</span> <span class="val-brand"><%- prod.brand %></span></li>
                                     <li><span class="fw-bold text-muted">Gramaj:</span> <span class="val-gramaj"><%- prod.cantitate_ml_g %></span> ml/g</li>
                                     <li><span class="fw-bold text-muted">Ingrediente:</span> <span class="val-ingrediente small"><%- prod.ingrediente_cheie %></span></li>

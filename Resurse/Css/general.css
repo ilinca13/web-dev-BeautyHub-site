@@ -755,7 +755,7 @@ math mo {
     max-width: 500px;
     aspect-ratio: 1 / 1;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
     margin-top: 15px;
     margin-bottom: 15px;
     
@@ -774,7 +774,7 @@ math mo {
     top: 0;
     width: 100%; 
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95); 
     z-index: 1;
 }
 
@@ -854,18 +854,18 @@ hr.special-separator::after {
     justify-content: left;
     margin: 90px 40px;
     margin-top: -20px;
-    overflow: visible;
+    overflow: visible; 
 }
 
 .text-reflectat {
-    position: relative;
+    position: relative; 
     display: inline-block;
     color: var(--culoare-accent-inchis); 
     transition: color 0.4s ease;
     white-space: nowrap; 
     cursor: pointer;
     transform: rotate(-15deg);
-    transform-origin: right center;
+    transform-origin: right center; /
 
 }
 
@@ -877,7 +877,7 @@ hr.special-separator::after {
     
     opacity: 1;
     padding-left: 30px; 
-    transform: scaleX(-1) rotate(-31deg);
+    transform: scaleX(-1) rotate(-31deg); 
     transform-origin: left right;
     
     color: inherit;
@@ -890,3 +890,69 @@ hr.special-separator::after {
     color: var(--culoare-accent); 
 }
 
+
+
+
+
+
+#banner-oferta {
+    width: 100%;
+    /* Culori de fundal contrastante */
+    background: linear-gradient(135deg, #fff5f8 0%, #fcedf2 100%);
+    
+    /* Înlocuim border-bottom simplu cu o bordură care urmărește rotunjirea */
+    border: 1px solid rgba(214, 51, 132, 0.2);
+    border-bottom: 3px solid #d63384; 
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+    /* Rotunjim doar colțurile de jos (stânga-jos și dreapta-jos) */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    
+    margin-bottom: 2rem; 
+    overflow: hidden; /* Se asigură că fundalul nu depășește colțurile rotunjite */
+}
+
+#banner-oferta .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Lăsăm containerul interior curat */
+    border-radius: 0;
+}
+
+
+.temporizator-container {
+    font-size: 1.25rem; /* Crescut de la 1.1rem pentru a se potrivi cu clasa Bootstrap fs-3 a badge-ului */
+    font-weight: 700;   /* Font bold puternic, la fel ca badge-ul */
+    color: var(--culoare-accent-inchis);
+    background-color: var(--culoare-casete);
+    padding: 6px 16px;  /* Ajustat pentru a păstra proporțiile unui badge Bootstrap */
+    border-radius: 8px; /* Rotunjire curată */
+    display: inline-block;
+    border: 1px solid var(--bordercolor);
+    margin-top: 15px;   /* Un pic de spațiu suplimentar deasupra fiindcă acum este mai mare */
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+/* Forțăm și textul din interior (inclusiv cifrele) să moștenească mărimea corectă */
+#temporizator-oferta {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Clasa critică se va adapta acum la noua dimensiune de bază */
+.temporizator-critic {
+    color: #d63384 !important;
+    background-color: #fff0f5 !important;
+    border-color: #d63384 !important;
+    font-size: 1.9rem; /* Crește ușor peste dimensiunea de bază pentru un plus de alertă */
+    box-shadow: 0 0 12px rgba(214, 51, 132, 0.45);
+}
+
+/* Forțăm creșterea și pentru cifre în starea critică */
+.temporizator-critic #temporizator-oferta {
+    font-size: 1.30rem;
+}

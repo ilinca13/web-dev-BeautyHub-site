@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function() {
     let iconTema = document.getElementById("icon-tema");
 
     
-    if (localStorage.getItem("tema") === "dark") {
+    if (localStorage.getItem("tema") === "dark") { // daca utilizatorul a salvat tema dark in localStorage la vizitele anterioare, aplicam tema dark la incarcarea paginii
         if (btnTema) btnTema.checked = true;
         if (iconTema) {
             iconTema.classList.remove("bi-sun-fill");

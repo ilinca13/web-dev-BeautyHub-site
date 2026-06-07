@@ -220,7 +220,7 @@
                                     <li>
                                         <span class="fw-bold text-muted">Preț:</span> 
                                         <% 
-                                            // Evaluăm potrivirea categoriei mari a produsului cu oferta activă
+                                            
                                             let areOfertaMecanism = locals.ofertaActiva && (ofertaActiva.categorie.toLowerCase() === prod.categorie_mare.toLowerCase());
                                             if (areOfertaMecanism) { 
                                                 let pretCalculatNou = prod.pret - (prod.pret * ofertaActiva.reducere / 100);

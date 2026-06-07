@@ -16,12 +16,12 @@
             <h2>Pagină produs</h2>
             
             <article id="art-produs">
-                <!-- Zona Stângă: Caseta Imaginii cu Contur Colorat Intens -->
+                
                 <figure class="imag-produs">
                     <img src="/Resurse/Imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
                 </figure>    
 
-                <!-- Zona Dreaptă: Categoriile Bold și Valorile în Casete Colorate -->
+                
                 <div class="detalii-produs">
                     <h3><span class="nume"><%- locals.prod.nume %></span></h3>
                     
@@ -39,9 +39,7 @@
             </article>
         </section>
 
-        <!-- ==========================================================================
-             SECTIUNE SETURI PROMOȚIONALE DIN CARE FACE PARTE PRODUSUL
-             ========================================================================== -->
+        <!-- seturi promotionale din care face parte  -->
         <% if (locals.seturi && locals.seturi.length > 0) { %>
             <section class="sectiune-seturi">
                 <h2>Disponibil și în seturi avantajoase:</h2>
@@ -54,7 +52,7 @@
                             
                             <h4 class="mb-3" style="font-size: 1.05rem; font-weight: bold; color: #444;">Componentele acestui set:</h4>
                             
-                            <!-- Grid fluid pentru produsele din set -->
+                            
                             <div class="row g-3 Bird-produse-componente">
                                 <% for (let p of set.produse) { %>
                                     <div class="col-6 col-sm-4 col-md-4">

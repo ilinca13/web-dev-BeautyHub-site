@@ -1,6 +1,6 @@
 # Beauty Hub - Web Commercial Site
 
-A comprehensive full-stack web application designed and developed for my Web Technologies Course, from my Second Year, Second Semester. Built with a Node.js and Express core, EJS for dynamic server-side rendering, and a PostgreSQL relational database, this repository documents the evolution of a static frontend interface into an integrated, data-driven platform.
+A comprehensive application designed and developed for my Web Technologies Course, from my Second Year, Second Semester. Built with a Node.js and Express core, EJS for dynamic server-side rendering, and a PostgreSQL relational database, this repository documents the evolution of a static frontend interface into an integrated, data-driven platform.
 > [!NOTE]
 > **Project Requirements:** The complete document can be reviewed directly here: [View Project Requirements PDF](./Requirements/Planificare%20&%20cerin%C8%9Be%20proiect%20(CTI,%202025-2026,%20sem%202)%20.pdf).
 

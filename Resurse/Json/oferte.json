@@ -1,6 +1,12 @@
 {
     "oferte": [
         {
+            "categorie": "makeup",
+            "data-incepere": "2026-06-15T20:02:58.010Z",
+            "data-finalizare": "2026-06-15T20:04:58.010Z",
+            "reducere": 10
+        },
+        {
             "categorie": "accesorii",
             "data-incepere": "2026-06-15T20:00:57.946Z",
             "data-finalizare": "2026-06-15T20:02:57.946Z",
@@ -17,12 +23,6 @@
             "data-incepere": "2026-06-15T19:56:57.824Z",
             "data-finalizare": "2026-06-15T19:58:57.824Z",
             "reducere": 45
-        },
-        {
-            "categorie": "makeup",
-            "data-incepere": "2026-06-15T19:54:57.769Z",
-            "data-finalizare": "2026-06-15T19:56:57.769Z",
-            "reducere": 50
         }
     ]
 }

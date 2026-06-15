@@ -1,17 +1,16 @@
 # Beauty Hub — Web Commercial Site
 
 A full-stack e-commerce platform for a beauty and personal care brand, built as part of a **Web Technologies** course (2nd Year, 2nd Semester). The project evolved from a static frontend into a data-driven application with a **Node.js**/**Express** server, **EJS** server-side rendering, and a **PostgreSQL** relational database.
-
+>[!NOTE]
 > **Project Requirements:** The complete document is available here → [Project Requirements PDF](./Requirements/Planificare%20&%20cerin%C8%9Be%20proiect%20(CTI,%202025-2026,%20sem%202)%20.pdf).
 
 
----
+
 
 ## Overview
 
 Beauty Hub lets users browse a product catalog, apply advanced search filters, view real-time promotional offers, and explore bundle sets with automatically calculated discounts. All business logic, from dynamic pricing to promotion lifecycle management, runs server-side.
 
----
 
 ## Features & Architecture
 
@@ -95,7 +94,7 @@ where $n$ is the number of products in the bundle. Navigation is bidirectional: 
 
 ---
 
-## Tech Stack
+ ## Tech Stack
 
 | Layer | Technologies |
 |-------|-------------|

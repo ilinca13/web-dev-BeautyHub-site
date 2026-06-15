@@ -20,18 +20,20 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
+
 const client = new pg.Client({
-    database: "proiect_beauty_hub",
-    user: "beauty_hub_admin",
-    password: "beauty_hub",
-    host: "localhost",
-    port: 5432
+    database: process.env.DB_NAME || "proiect_beauty_hub",
+    user: process.env.DB_USER || "beauty_hub_admin",
+    password: process.env.DB_PASSWORD || "beauty_hub",
+    host: process.env.DB_HOST || "localhost",
+    port: process.env.DB_PORT || 5432,
+    // SSL necesar pe Railway/Render, ignorat local
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false
 });
 
 client.connect();
 
 // bonus 12: sistem automat de oferte 
-
 
 const caleJsonOferte = path.join(__dirname, "Resurse", "Json", "oferte.json");
 
@@ -39,7 +41,7 @@ const T = 2 * 60 * 1000;
 const T2 = 5 * 60 * 1000;   
 
 function genereazaOfertaAutomata() {
-    client.query("SELECT unnest(enum_range(NULL::tipuri_produse)) as cat", function (err, rezultat) { // cat - alias pentru unnest, unnest returneaza fiecare element al enum-ului ca un rând separat
+    client.query("SELECT unnest(enum_range(NULL::tipuri_produse)) as cat", function (err, rezultat) {
 
         if (err || rezultat.rows.length === 0) {
             console.error("Eroare la extragerea categoriilor pentru generatorul de oferte:", err);
@@ -49,7 +51,6 @@ function genereazaOfertaAutomata() {
         const categoriiPosibile = rezultat.rows.map(r => r.cat); 
         const reduceriPosibile = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 
-        
         let dateJson = { oferte: [] }; 
         if (fs.existsSync(caleJsonOferte)) {
             try {
@@ -59,24 +60,18 @@ function genereazaOfertaAutomata() {
             }
         }
 
-        // regula: nu se vor genera doua oferte consecutive pentru aceeasi categorie
-        let ultimaCategorie = (dateJson.oferte && dateJson.oferte.length > 0) ? dateJson.oferte[0].categorie : null; //  categoria primei oferte 
+        let ultimaCategorie = (dateJson.oferte && dateJson.oferte.length > 0) ? dateJson.oferte[0].categorie : null;
 
         let categoriiFiltrate = categoriiPosibile.filter(c => c !== ultimaCategorie); 
         
-        
         if (categoriiFiltrate.length === 0) categoriiFiltrate = categoriiPosibile;
 
-        
-        
         const categorieAleasa = categoriiFiltrate[Math.floor(Math.random() * categoriiFiltrate.length)];
         const reducereAleasa = reduceriPosibile[Math.floor(Math.random() * reduceriPosibile.length)];
 
-    
         const acum = new Date();
         const momentFinalizare = new Date(acum.getTime() + T);
 
-   
         const nouaOferta = {
             categorie: categorieAleasa,
             "data-incepere": acum.toISOString(),
@@ -84,28 +79,22 @@ function genereazaOfertaAutomata() {
             reducere: reducereAleasa
         };
 
-        
-
-        // Cerinta T2: Ștergem ofertele expirat de mai mult de T2 minute
         if (dateJson.oferte) {
             dateJson.oferte = dateJson.oferte.filter(oferta => {
-                const finalizare = new Date(oferta["data-finalizare"]); // string -> obiect date
+                const finalizare = new Date(oferta["data-finalizare"]);
                 return finalizare > acum || (acum.getTime() - finalizare.getTime() < T2);
             });
         } else {
             dateJson.oferte = [];
         }
 
-        
         dateJson.oferte.unshift(nouaOferta); 
 
-        
         fs.writeFileSync(caleJsonOferte, JSON.stringify(dateJson, null, 4), "utf-8"); 
         console.log(`[OFERTĂ NOUĂ] Categorie: ${categorieAleasa}, Reducere: ${reducereAleasa}%`);
     });
 }
 
-// sincronizare a timpului la repornirea serverului
 function pornesteSistemOferte() {
     let timpPanaLaExpirare = 0;
 
@@ -116,8 +105,6 @@ function pornesteSistemOferte() {
                 const ultimaOferta = dateJson.oferte[0];
                 const acum = new Date();
                 const finalizare = new Date(ultimaOferta["data-finalizare"]);
-                
-                // pana expira oferta curenta
                 timpPanaLaExpirare = finalizare.getTime() - acum.getTime();
             }
         } catch (e) {
@@ -125,27 +112,20 @@ function pornesteSistemOferte() {
         }
     }
 
-    
     if (timpPanaLaExpirare <= 0) {
         console.log("[SISTEM OFERTE] Nu există ofertă activă validă în JSON. Se generează una acum...");
         genereazaOfertaAutomata();
-        
-       
         setTimeout(pornesteSistemOferte, T + 50); 
     } else {
         console.log(`[SISTEM OFERTE] Ofertă activă detectată în fișier. Următoarea se va genera peste ${Math.round(timpPanaLaExpirare / 1000)} secunde.`);
-        
-        setTimeout(function() { // cu functie callback pentru a păstra contextul și a nu apela imediat
+        setTimeout(function() {
             genereazaOfertaAutomata();
-            
             setInterval(genereazaOfertaAutomata, T); 
         }, timpPanaLaExpirare + 50); 
     }
 }
 
-
 setTimeout(pornesteSistemOferte, 1000);
-
 
 function obtineOfertaActiva() { 
     if (!fs.existsSync(caleJsonOferte)) return null;
@@ -164,11 +144,6 @@ function obtineOfertaActiva() {
     }
     return null;
 }
-
-
-
-
-
 
 client.query("select * from produse where id>3", function (err, rez) {
     if (err) {
@@ -204,7 +179,6 @@ app.use(function (req, res, next) {
 });
 
 app.get(["/", "/index", "/home"], function (req, res) {
-    // Trimitem oferta activă pe pagina principală
     res.render("pagini/index", {
         ip: req.ip,
         imagini: obGlobal.obImagini,
@@ -217,8 +191,6 @@ app.get("/galerie", function (req, res) {
         imagini: obGlobal.obImagini
     });
 });
-
-// generare pagina produse
 
 app.get("/produse", function (req, res) {
     let clauzaWhere = ""; 
@@ -233,8 +205,6 @@ app.get("/produse", function (req, res) {
             return;
         }
 
-        // bonus 1: date dinamice provenite din baza de date pentru fiecare tip de input
-
         const sqlStatistici = `
             SELECT 
                 MIN(pret) AS pret_minim, 
@@ -247,11 +217,6 @@ app.get("/produse", function (req, res) {
                  WHERE table_name = 'produse' AND column_name = 'nume') AS lungime_max_nume
             FROM produse;
         `;
-
-        // MIN(pret) AS pret_minim, MAX(pret) AS pret_maxim : input range
-        // MIN(cantitate_ml_g) AS gramaj_minim, MAX(cantitate_ml_g) AS gramaj_maxim: input radio buttons
-        // ARRAY_AGG(DISTINCT brand ORDER BY brand) AS lista_branduri: input datalist
-        // in textare preluam dinamic numarul total de produse din baza de date
 
         client.query(sqlStatistici, function (err, rezStatistici) {
             if (err) {
@@ -267,7 +232,7 @@ app.get("/produse", function (req, res) {
                     return;
                 }
 
-                const stats = rezStatistici.rows[0]; // foloseste clauze de agregare => rezultatul este un singur rând cu toate statisticile
+                const stats = rezStatistici.rows[0];
 
                 res.render("pagini/produse", {
                     produse: rezProduse.rows,
@@ -287,28 +252,9 @@ app.get("/produse", function (req, res) {
     });
 });
 
-// app.get("/produs/:id", function (req, res) {
-//     client.query(`select * from produse where id=${req.params.id}`, function (err, rez) {
-//         if (err) {
-//             console.log("Eroare", err);
-//             afisareEroare(res, 2);
-//         } else {
-//             if (rez.rowCount == 0) {
-//                 afisareEroare(res, 404, "Produs inexistent");
-//             } else {
-//                 res.render("pagini/produs", {
-//                     prod: rez.rows[0]
-//                 });
-//             }
-//         }
-//     });
-// });
-
-
-app.get("/produs/:id", function (req, res) { // id este un parametru dinamic
+app.get("/produs/:id", function (req, res) {
     const idProdus = req.params.id;
 
-    
     client.query(`SELECT * FROM produse WHERE id=${idProdus}`, function (err, rezProd) {
         if (err) {
             console.error("Eroare la citirea produsului:", err);
@@ -323,7 +269,6 @@ app.get("/produs/:id", function (req, res) { // id este un parametru dinamic
 
         const produsCurent = rezProd.rows[0]; 
 
-       
         const sqlSeturiProdus = `
             SELECT s.id, s.nume_set, s.descriere_set 
             FROM seturi s
@@ -335,16 +280,13 @@ app.get("/produs/:id", function (req, res) { // id este un parametru dinamic
         client.query(sqlSeturiProdus, function (errSeturi, rezSeturi) {
             if (errSeturi) {
                 console.error("Eroare la citirea seturilor produsului:", errSeturi);
-                
                 return res.render("pagini/produs", { prod: produsCurent, seturi: [] });
             }
 
-            
             if (rezSeturi.rowCount === 0) {
                 return res.render("pagini/produs", { prod: produsCurent, seturi: [] });
             }
 
-            
             const listeIdSeturi = rezSeturi.rows.map(s => s.id).join(",");
             const sqlToateProduseleDinSeturi = `
                 SELECT asoc.id_set, p.id, p.nume, p.imagine, p.pret
@@ -359,12 +301,10 @@ app.get("/produs/:id", function (req, res) { // id este un parametru dinamic
                     return res.render("pagini/produs", { prod: produsCurent, seturi: [] });
                 }
 
-                
                 const seturiProcesate = rezSeturi.rows.map(set => {
                     const produseDinSet = rezToateProd.rows.filter(p => p.id_set === set.id);
                     const n = produseDinSet.length;
                     const procentReducere = Math.min(5, n) * 0.05;
-                    
                     const pretIntreg = produseDinSet.reduce((sum, p) => sum + parseFloat(p.pret || 0), 0);
                     const pretCalculatSet = pretIntreg * (1 - procentReducere);
 
@@ -377,7 +317,6 @@ app.get("/produs/:id", function (req, res) { // id este un parametru dinamic
                     };
                 });
 
-                
                 res.render("pagini/produs", {
                     prod: produsCurent,
                     seturi: seturiProcesate
@@ -398,14 +337,6 @@ app.get("/seturi", function (req, res) {
             return res.status(500).send("Eroare la seturi: " + err.message);
         }
 
-        
-        console.log("=== DEBUG: Rezultat 'seturi' din DB ===");
-        console.log(rezSeturi.rows); 
-        console.log(`Au fost găsite ${rezSeturi.rows ? rezSeturi.rows.length : 0} seturi.`);
-
-
-       // lista unde fiecare rand contine datele unui produs si id ul setului din care face parte
-
         const sqlProduseSeturi = `
             SELECT 
                 asoc.id_set, 
@@ -417,27 +348,17 @@ app.get("/seturi", function (req, res) {
             JOIN produse p ON asoc.id_produs = p.id;
         `;
 
-        // 
-
         client.query(sqlProduseSeturi, function (errProd, rezProduse) {
             if (errProd) {
                 console.error("--- EROARE SQL PRODUSE SETURI ---", errProd);
                 return res.status(500).send("Eroare la produse seturi: " + errProd.message);
             }
 
-            
-            console.log("=== DEBUG: Rezultat 'produse din seturi' din DB ===");
-            console.log(rezProduse.rows);
-            console.log(`Au fost găsite ${rezProduse.rows ? rezProduse.rows.length : 0} asocieri.`);
-
-            // maparea datelor
             try {
                 const seturiProcesate = rezSeturi.rows.map(set => {
-                    // set este un alias pentru un rand din rezultatul primului query, conține id, nume_set și descriere_set
                     const produseDinSet = rezProduse.rows.filter(p => p.id_set === set.id);
                     const n = produseDinSet.length;
                     const procentReducere = Math.min(5, n) * 0.05;
-                    
                     const pretIntreg = produseDinSet.reduce((sum, p) => sum + parseFloat(p.pret || 0), 0);
                     const pretCalculatSet = pretIntreg * (1 - procentReducere);
 
@@ -452,8 +373,6 @@ app.get("/seturi", function (req, res) {
                     };
                 });
 
-                console.log("=== DEBUG: Datele au fost procesate cu succes în JS. Se randează EJS... ===");
-                
                 res.render("pagini/seturi", {
                     seturi: seturiProcesate
                 });
@@ -614,5 +533,7 @@ app.get("/*pagina", function (req, res) {
     }
 });
 
-app.listen(8080);
-console.log("Serverul a pornit pe portul 8080!");
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT);
+console.log(`Serverul a pornit pe portul ${PORT}!`);

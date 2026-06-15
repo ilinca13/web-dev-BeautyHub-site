@@ -2,26 +2,26 @@
     "oferte": [
         {
             "categorie": "makeup",
-            "data-incepere": "2026-06-15T20:02:58.010Z",
-            "data-finalizare": "2026-06-15T20:04:58.010Z",
-            "reducere": 10
-        },
-        {
-            "categorie": "accesorii",
-            "data-incepere": "2026-06-15T20:00:57.946Z",
-            "data-finalizare": "2026-06-15T20:02:57.946Z",
-            "reducere": 25
-        },
-        {
-            "categorie": "makeup",
-            "data-incepere": "2026-06-15T19:58:57.891Z",
-            "data-finalizare": "2026-06-15T20:00:57.891Z",
+            "data-incepere": "2026-06-15T20:53:26.036Z",
+            "data-finalizare": "2026-06-15T20:55:26.036Z",
             "reducere": 40
         },
         {
             "categorie": "skincare",
-            "data-incepere": "2026-06-15T19:56:57.824Z",
-            "data-finalizare": "2026-06-15T19:58:57.824Z",
+            "data-incepere": "2026-06-15T20:51:25.972Z",
+            "data-finalizare": "2026-06-15T20:53:25.972Z",
+            "reducere": 10
+        },
+        {
+            "categorie": "accesorii",
+            "data-incepere": "2026-06-15T20:49:25.908Z",
+            "data-finalizare": "2026-06-15T20:51:25.908Z",
+            "reducere": 30
+        },
+        {
+            "categorie": "makeup",
+            "data-incepere": "2026-06-15T20:47:25.851Z",
+            "data-finalizare": "2026-06-15T20:49:25.851Z",
             "reducere": 45
         }
     ]

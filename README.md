@@ -1,15 +1,32 @@
 # Beauty Hub — Web Commercial Site
-
 A full-stack e-commerce platform for a beauty and personal care brand, built as part of a **Web Technologies** course (2nd Year, 2nd Semester). The project evolved from a static frontend into a data-driven application with a **Node.js**/**Express** server, **EJS** server-side rendering, and a **PostgreSQL** relational database.
->[!NOTE]
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![EJS](https://img.shields.io/badge/EJS-B4CA65?style=for-the-badge&logo=ejs&logoColor=black)
+![SASS](https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
+
 > **Project Requirements:** The complete document is available here → [Project Requirements PDF](./Requirements/Planificare%20&%20cerin%C8%9Be%20proiect%20(CTI,%202025-2026,%20sem%202)%20.pdf).
 
+## Hosted via [Render.com](https://render.com)
 
-
-
+ >[!IMPORTANT]
+> A **live demo** is available here → [https://web-dev-beautyhub-site.onrender.com](https://web-dev-beautyhub-site.onrender.com)
+> The site is hosted on [Render](https://render.com)'s free tier. If the service has been inactive, the first load may take up to 50 seconds to spin up.
+[![Deploy Status](https://api.render.com/deploy/srv-d8o6gs48aovs73fhdi70/badge)](https://web-dev-beautyhub-site.onrender.com)
 ## Overview
 
-Beauty Hub lets users browse a product catalog, apply advanced search filters, view real-time promotional offers, and explore bundle sets with automatically calculated discounts. All business logic, from dynamic pricing to promotion lifecycle management, runs server-side.
+[Beauty Hub](https://web-dev-beautyhub-site.onrender.com) lets users browse a product catalog, apply advanced search filters, view real-time promotional offers, and explore bundle sets with automatically calculated discounts. All business logic, from dynamic pricing to promotion lifecycle management, runs server-side.
+
+
+<br> 
+
+
+
+</br>
 
 
 ## Features & Architecture
@@ -65,15 +82,14 @@ Products can be grouped into promotional bundles through a normalized relational
 
 The discount model follows:
 
+
 $$\text{discount} = \min(5,\ n) \times 5\%$$
 
 where $n$ is the number of products in the bundle. Navigation is bidirectional: the bundle catalog deep-links to individual product profiles, and each product page dynamically lists every bundle it belongs to.
 
 ---
 
-### 5. Security & Compliance
-
-**GDPR:** An animated consent banner handles data usage acknowledgment through short-expiry cookies. Transitions use hardware-accelerated CSS transforms (opacity and scale).
+### 5. Compliance
 
 **Print Rendering:** A dedicated `@media print` stylesheet strips navigation and promotional graphics, enforces explicit page breaks, converts hyperlinks into inline URI citations, and injects a developer identity watermark that cannot be spoofed.
 
@@ -93,6 +109,33 @@ where $n$ is the number of products in the bundle. Navigation is bidirectional: 
 - In the final 10 seconds of a campaign, the DOM transitions into a critical state with color changes and an audio alert, followed by an automatic page refresh on expiration
 
 ---
+### 7. Deployment
+
+The application is deployed on [Render](https://render.com) using two separate services, both provisioned in the **Frankfurt (EU Central)** region to minimize latency.
+
+**Infrastructure setup:**
+- **PostgreSQL service** — a managed database instance created directly on Render, configured with the same database name and user as the local development environment
+- **Web Service** — connected to this GitHub repository, with `npm install` as the build command and `node index.js` as the start command; redeploys automatically on every push to `main`
+
+**Database migration:**
+The local PostgreSQL database was exported using `pg_dump` and restored into the Render-managed instance via `psql` using the external connection string provided by Render:
+
+```bash
+pg_dump -U beauty_hub_admin -d proiect_beauty_hub -F p -f backup.sql
+psql "postgresql://..." -f backup.sql
+```
+
+**Environment variables:**
+All database credentials are injected at runtime through environment variables (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SSL`), keeping secrets out of the codebase. The application falls back to local development defaults when these variables are not set, so the same `index.js` runs without modification in both environments.
+
+
+
+<br> 
+
+
+
+</br>
+
 
  ## Tech Stack
 
@@ -102,11 +145,16 @@ where $n$ is the number of products in the bundle. Navigation is bidirectional: 
 | Template Engine | EJS (Embedded JavaScript) |
 | Database | PostgreSQL, JSON flat-files (`oferte.json`, `galerie.json`, `erori.json`) |
 | Frontend | HTML5, CSS3 (Grid, Flexbox, Custom Properties), SASS/SCSS, Bootstrap 5 |
+| Hosting | Render (Web Service + PostgreSQL, Frankfurt EU) |
 | Key Dependencies | `express`, `sass`, `sharp`, `pg`, `path`, `fs` |
 
----
+<br> 
 
-## Getting Started
+
+
+</br>
+
+## Getting Started on Localhost
 
 ### 1. Clone the repository
 

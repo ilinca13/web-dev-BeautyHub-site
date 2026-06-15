@@ -9,6 +9,7 @@ A full-stack e-commerce platform for a beauty and personal care brand, built as 
 ![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
 
+
 > **Project Requirements:** The complete document is available here → [Project Requirements PDF](./Requirements/Planificare%20&%20cerin%C8%9Be%20proiect%20(CTI,%202025-2026,%20sem%202)%20.pdf).
 
 ## Hosted via [Render.com](https://render.com)
@@ -16,7 +17,9 @@ A full-stack e-commerce platform for a beauty and personal care brand, built as 
  >[!IMPORTANT]
 > A **live demo** is available here → [https://web-dev-beautyhub-site.onrender.com](https://web-dev-beautyhub-site.onrender.com)
 > The site is hosted on [Render](https://render.com)'s free tier. If the service has been inactive, the first load may take up to 50 seconds to spin up.
-[![Deploy Status](https://api.render.com/deploy/srv-d8o6gs48aovs73fhdi70/badge)](https://web-dev-beautyhub-site.onrender.com)
+>
+>![Status](https://img.shields.io/badge/status-live-success?style=for-the-badge)
+
 ## Overview
 
 [Beauty Hub](https://web-dev-beautyhub-site.onrender.com) lets users browse a product catalog, apply advanced search filters, view real-time promotional offers, and explore bundle sets with automatically calculated discounts. All business logic, from dynamic pricing to promotion lifecycle management, runs server-side.
